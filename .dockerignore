@@ -1,0 +1,8 @@
+.coverage
+.tox/
+htmlcov/
+.mypy_cache
+*egg-info
+**/__pycache__/
+*.py[cod]
+

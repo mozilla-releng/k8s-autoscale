@@ -1,0 +1,15 @@
+worker_types:
+  - name: beetmoverworker-v1
+    provisioner: scriptworker-prov-v1
+    poll_interval: 180
+    deployment_namespace: TODO
+    deployment_name: TODO
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        boot_time: 60
+        tolerance_seconds: 300
+        # cover 100% of pending
+        capacity_ratio: 1.0

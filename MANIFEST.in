@@ -1,0 +1,27 @@
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+include CODE_OF_CONDUCT.md
+include tox.ini
+include config-example.yaml
+include version.txt
+
+recursive-include requirements *.in
+recursive-include requirements *.txt
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py
+
+# added by check_manifest.py
+include *.txt
+
+# added by check_manifest.py
+include Dockerfile
+recursive-include configs *.yml
+recursive-include docker.d *
+
+exclude .dockerignore
+exclude .taskcluster.yml

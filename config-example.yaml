@@ -1,0 +1,18 @@
+worker_types:
+  - name: shipitscript-v1
+    provisioner: scriptworker-prov-v1
+    poll_interval: 180
+    deployment_namespace: default
+    deployment_name: nginx-1
+    # remove kube_config and kube_connfig_context to use in-cluster auth
+    kube_connfig: ~/.kube/config
+    kube_connfig_context: xx
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        boot_time: 60
+        tolerance_seconds: 300
+        # cover 100% of pending
+        capacity_ratio: 1.0
