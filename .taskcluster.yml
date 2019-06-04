@@ -19,16 +19,19 @@ tasks:
     owner: ${event.sender.login}@users.noreply.github.com
 
     shouldPush:
-      $if: 'event.repository.html_url != "https://github.com/mozilla-releng/k8s-autoscale"'
-      then:
-        false
+      $if: 'tasks_for == "github-pull-request"'
+      then: false
       else:
-        $if: 'tasks_for == "github-release"'
-        then: true
+        $if: 'event.repository.html_url != "https://github.com/mozilla-releng/k8s-autoscale"'
+        then:
+          false
         else:
-          $if: 'event.ref in ["refs/heads/master", "refs/heads/dev"]'
+          $if: 'tasks_for == "github-release"'
           then: true
-          else: false
+          else:
+            $if: 'event.ref in ["refs/heads/master", "refs/heads/dev"]'
+            then: true
+            else: false
 
     docker_tag:
       $if: 'tasks_for == "github-pull-request"'
