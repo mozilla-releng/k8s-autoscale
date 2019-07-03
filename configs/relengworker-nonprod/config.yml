@@ -11,7 +11,7 @@ worker_types:
         avg_task_duration: 60
         boot_time: 60
         tolerance_seconds: 300
-        # cover 100% of pending
+        # cover 80% of pending
         capacity_ratio: 0.8
   - name: beetmoverworker-dev
     provisioner: scriptworker-prov-v1
@@ -25,5 +25,5 @@ worker_types:
         avg_task_duration: 60
         boot_time: 60
         tolerance_seconds: 300
-        # cover 100% of pending
+        # cover 20% of pending
         capacity_ratio: 0.2
