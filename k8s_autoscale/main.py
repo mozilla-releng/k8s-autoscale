@@ -1,4 +1,5 @@
 import os.path
+import time
 
 import kubernetes
 import yaml
@@ -12,9 +13,11 @@ q = Queue({"rootUrl": "https://taskcluster.net"})
 
 def autoscale(config):
     config = yaml.safe_load(config)
-    for worker_type in config["worker_types"]:
-        # TODO: run in parallel
-        handle_worker_type(worker_type)
+    while True:
+        for worker_type in config["worker_types"]:
+            # TODO: run in parallel
+            handle_worker_type(worker_type)
+        time.sleep(30)
 
 
 def get_api(kube_config, kube_config_context):
