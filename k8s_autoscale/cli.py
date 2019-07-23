@@ -2,6 +2,7 @@
 
 """Console script for kubernetes_autoscaler_for_taskcluster_scriptworkers."""
 import sys
+import time
 
 import click
 
@@ -14,4 +15,6 @@ from k8s_autoscale.main import autoscale
 )
 def main(config):
     """Console script for kubernetes_autoscaler_for_taskcluster_scriptworkers."""
-    autoscale(config)
+    while True:
+        autoscale(config)
+        time.sleep(30)
