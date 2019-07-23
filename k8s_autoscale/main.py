@@ -17,6 +17,7 @@ def autoscale(config):
         for worker_type in config["worker_types"]:
             # TODO: run in parallel
             handle_worker_type(worker_type)
+        logger.info("Sleeping between pools")
         time.sleep(30)
 
 
