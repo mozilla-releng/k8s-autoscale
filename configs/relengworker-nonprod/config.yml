@@ -10,7 +10,7 @@ worker_types:
         max_replicas: 10
         avg_task_duration: 60
         boot_time: 60
-        tolerance_seconds: 300
+        sla_seconds: 300
         # cover 80% of pending
         capacity_ratio: 0.8
   - name: beetmoverworker-dev
@@ -24,6 +24,6 @@ worker_types:
         max_replicas: 2
         avg_task_duration: 60
         boot_time: 60
-        tolerance_seconds: 300
+        sla_seconds: 300
         # cover 20% of pending
         capacity_ratio: 0.2
