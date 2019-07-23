@@ -2,7 +2,6 @@
 
 """Console script for kubernetes_autoscaler_for_taskcluster_scriptworkers."""
 import sys
-import time
 
 import click
 
