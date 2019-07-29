@@ -18,7 +18,7 @@ def autoscale(config):
             # TODO: run in parallel
             handle_worker_type(worker_type)
         logger.info("Sleeping between pools")
-        time.sleep(30)
+        time.sleep(180)
 
 
 def get_api(kube_config, kube_config_context):
