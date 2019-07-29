@@ -86,10 +86,6 @@ def handle_worker_type(cfg):
     log.info("Calculating capacity")
     capacity = cfg["autoscale"]["args"]["max_replicas"] - (running + booting)
     log = log.bind(capacity=capacity)
-    log.info("Checking capacity")
-    if capacity <= 0:
-        log.info("Maximum capacity reached")
-        return
 
     log.info("Checking pending")
     pending = q.pendingTasks(cfg["provisioner"], cfg["name"])["pendingTasks"]
@@ -109,6 +105,9 @@ def handle_worker_type(cfg):
         adjustment = min([capacity, desired])
         log = log.bind(adjustment=adjustment)
         log.info(f"Need to increase capacity from {running} running by {adjustment}")
+        if capacity <= 0:
+            log.info("Maximum capacity reached")
+            return
         adjust_scale(
             api,
             running,
