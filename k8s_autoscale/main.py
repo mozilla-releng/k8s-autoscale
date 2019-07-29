@@ -75,17 +75,17 @@ def handle_worker_type(cfg):
         deployment_namespace=cfg["deployment_namespace"],
         deployment_name=cfg["deployment_name"],
     )
-    log.bind(running=running)
+    log = log.bind(running=running)
     log.info("Getting the number of replicas in progress...")
     booting = get_booting(
         api=api,
         deployment_namespace=cfg["deployment_namespace"],
         deployment_name=cfg["deployment_name"],
     )
-    log.bind(booting=booting)
+    log = log.bind(booting=booting)
     log.info("Calculating capacity")
     capacity = cfg["autoscale"]["args"]["max_replicas"] - (running + booting)
-    log.bind(capacity=capacity)
+    log = log.bind(capacity=capacity)
     log.info("Checking capacity")
     if capacity <= 0:
         log.info("Maximum capacity reached")
@@ -93,10 +93,10 @@ def handle_worker_type(cfg):
 
     log.info("Checking pending")
     pending = q.pendingTasks(cfg["provisioner"], cfg["name"])["pendingTasks"]
-    log.bind(pending=pending)
+    log = log.bind(pending=pending)
     log.info("Calculated desired replica count")
     desired = get_new_worker_count(pending, running, booting, cfg["autoscale"]["args"])
-    log.bind(desired=desired)
+    log = log.bind(desired=desired)
     if desired == 0:
         log.info("Zero replicas needed")
         return
@@ -107,7 +107,7 @@ def handle_worker_type(cfg):
         )
     else:
         adjustment = min([capacity, desired])
-        log.bind(adjustment=adjustment)
+        log = log.bind(adjustment=adjustment)
         log.info(f"Need to increase capacity from {running} running by {adjustment}")
         adjust_scale(
             api,
