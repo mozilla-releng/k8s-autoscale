@@ -7,10 +7,10 @@ worker_types:
     autoscale:
       algorithm: sla
       args:
-        max_replicas: 10
-        avg_task_duration: 60
+        max_replicas: 20
+        avg_task_duration: 120
         boot_time: 60
-        sla_seconds: 300
+        sla_seconds: 240
         # cover 80% of pending
         capacity_ratio: 0.8
   - name: beetmoverworker-dev
@@ -22,8 +22,8 @@ worker_types:
       algorithm: sla
       args:
         max_replicas: 2
-        avg_task_duration: 60
+        avg_task_duration: 120
         boot_time: 60
-        sla_seconds: 300
+        sla_seconds: 240
         # cover 20% of pending
         capacity_ratio: 0.2
