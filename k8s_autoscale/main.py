@@ -67,7 +67,8 @@ def adjust_scale(api, running, adjustment, deployment_namespace, deployment_name
 
 
 def handle_worker_type(cfg):
-    log = logger.bind(worker_type=cfg["name"], provisioner=cfg["provisioner"])
+    log = logger.bind(worker_type=cfg["name"], provisioner=cfg["provisioner"],
+                      deployment_namespace=cfg["deployment_namespace"], deployment_name=cfg["deployment_name"])
     api = get_api(cfg.get("kube_connfig"), cfg.get("kube_connfig_context"))
     log.info("Handling worker type. Getting the number of running replicas...")
     running = get_running(
