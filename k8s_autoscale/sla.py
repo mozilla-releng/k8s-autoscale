@@ -11,7 +11,7 @@ def get_new_worker_count(pending, running, args):
         return -running
     # How many tasks a replica can process within our tolerance period
     new_tasks_per_replica = math.floor(
-        (args["sla_seconds"] - args["boot_time"]) / args["avg_task_duration"]
+        args["sla_seconds"] / args["avg_task_duration"]
     )
     # how many tasks can be covered by the running replicas, assuming they are
     # busy and can only take new tasks after they are done with the current one

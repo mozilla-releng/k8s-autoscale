@@ -12,7 +12,6 @@ worker_types:
       args:
         max_replicas: 20
         avg_task_duration: 60
-        boot_time: 60
         sla_seconds: 300
         # cover 100% of pending
         capacity_ratio: 1.0
