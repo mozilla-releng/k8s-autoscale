@@ -47,15 +47,6 @@ def get_running(api, deployment_namespace, deployment_name):
     )
 
 
-def get_booting(api, deployment_namespace, deployment_name):
-    return (
-        get_deployment_status(
-            api, deployment_namespace, deployment_name
-        ).unavailable_replicas
-        or 0
-    )
-
-
 def adjust_scale(api, running, adjustment, deployment_namespace, deployment_name):
     # "add" works as "replace" in case we have more than 0 replicas.
     # "replace" fails in case we don't have any replicas running
@@ -81,22 +72,15 @@ def handle_worker_type(cfg):
         deployment_name=cfg["deployment_name"],
     )
     log = log.bind(running=running)
-    log.info("Getting the number of replicas in progress...")
-    booting = get_booting(
-        api=api,
-        deployment_namespace=cfg["deployment_namespace"],
-        deployment_name=cfg["deployment_name"],
-    )
-    log = log.bind(booting=booting)
     log.info("Calculating capacity")
-    capacity = cfg["autoscale"]["args"]["max_replicas"] - (running + booting)
+    capacity = cfg["autoscale"]["args"]["max_replicas"] - running
     log = log.bind(capacity=capacity)
 
     log.info("Checking pending")
     pending = q.pendingTasks(cfg["provisioner"], cfg["name"])["pendingTasks"]
     log = log.bind(pending=pending)
     log.info("Calculated desired replica count")
-    desired = get_new_worker_count(pending, running, booting, cfg["autoscale"]["args"])
+    desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
     log = log.bind(desired=desired)
     if desired == 0:
         log.info("Zero replicas needed")
