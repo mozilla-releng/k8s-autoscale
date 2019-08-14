@@ -12,16 +12,3 @@ worker_types:
         sla_seconds: 240
         # cover 80% of pending
         capacity_ratio: 0.8
-  - name: beetmoverworker-dev
-    provisioner: scriptworker-prov-v1
-    poll_interval: 180
-    deployment_namespace: stage-beetmover
-    deployment_name: beetmover-stage-relengworker-app-1
-    autoscale:
-      algorithm: sla
-      args:
-        max_replicas: 2
-        avg_task_duration: 120
-        sla_seconds: 240
-        # cover 20% of pending
-        capacity_ratio: 0.2
