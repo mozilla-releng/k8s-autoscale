@@ -91,8 +91,7 @@ def handle_worker_type(cfg):
             adjust_scale(
                 api, min_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
             )
-        else:
-            return
+        return
     if desired < 0:
         log.info(f"Need to remove {abs(desired)} of {running}")
         target_replicas = running + desired
