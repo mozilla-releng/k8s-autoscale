@@ -12,3 +12,4 @@ worker_types:
         sla_seconds: 240
         # cover 80% of pending
         capacity_ratio: 0.8
+        min_replicas: 1

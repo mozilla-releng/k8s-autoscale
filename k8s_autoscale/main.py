@@ -47,10 +47,10 @@ def get_running(api, deployment_namespace, deployment_name):
     )
 
 
-def adjust_scale(api, running, adjustment, deployment_namespace, deployment_name):
+def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
     # "add" works as "replace" in case we have more than 0 replicas.
     # "replace" fails in case we don't have any replicas running
-    patch = [{"op": "add", "path": "/spec/replicas", "value": running + adjustment}]
+    patch = [{"op": "add", "path": "/spec/replicas", "value": target_replicas}]
     logger.debug("PATCH object", patch=patch)
     api.patch_namespaced_deployment_scale(
         name=deployment_name, namespace=deployment_namespace, body=patch
@@ -87,8 +87,16 @@ def handle_worker_type(cfg):
         return
     if desired < 0:
         log.info(f"Need to remove {abs(desired)} of {running}")
+        target_replicas = running + desired
+        if target_replicas < 0:
+            log.info("Target %s is negative, setting to zero", target_replicas)
+            target_replicas = 0
+        min_replicas = cfg.get("min_replicas", 0)
+        if target_replicas < min_replicas:
+            log.info("Using min_replicas %s instead of target %s", min_replicas, target_replicas)
+            target_replicas = min_replicas
         adjust_scale(
-            api, running, desired, cfg["deployment_namespace"], cfg["deployment_name"]
+            api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
         )
     else:
         adjustment = min([capacity, desired])
@@ -99,8 +107,7 @@ def handle_worker_type(cfg):
             return
         adjust_scale(
             api,
-            running,
-            adjustment,
+            running + adjustment,
             cfg["deployment_namespace"],
             cfg["deployment_name"],
         )
