@@ -93,7 +93,11 @@ def handle_worker_type(cfg):
             target_replicas = 0
         min_replicas = cfg.get("min_replicas", 0)
         if target_replicas < min_replicas:
-            log.info("Using min_replicas %s instead of target %s", min_replicas, target_replicas)
+            log.info(
+                "Using min_replicas %s instead of target %s",
+                min_replicas,
+                target_replicas,
+            )
             target_replicas = min_replicas
         adjust_scale(
             api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
