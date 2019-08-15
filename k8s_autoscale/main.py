@@ -58,7 +58,7 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 
 
 def handle_worker_type(cfg):
-    min_replicas = cfg.get("min_replicas", 0)
+    min_replicas = cfg["autoscale"]["args"]["min_replicas"]
     log = logger.bind(
         worker_type=cfg["name"],
         provisioner=cfg["provisioner"],
