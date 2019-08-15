@@ -96,15 +96,13 @@ def handle_worker_type(cfg):
     if desired < 0:
         log.info(f"Need to remove {abs(desired)} of {running}")
         target_replicas = running + desired
+        log = log.bind(target_replicas=target_replicas)
         if target_replicas < 0:
-            log.info("Target %s is negative, setting to zero", target_replicas)
+            log.info("Target is negative, setting to zero")
             target_replicas = 0
+            log = log.bind(target_replicas=target_replicas)
         if target_replicas < min_replicas:
-            log.info(
-                "Using min_replicas %s instead of target %s",
-                min_replicas,
-                target_replicas,
-            )
+            log.info("Using min_replicas instead of target")
             target_replicas = min_replicas
         adjust_scale(
             api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
