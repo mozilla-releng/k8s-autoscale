@@ -42,8 +42,7 @@ def get_deployment_status(api, deployment_namespace, deployment_name):
 
 def get_running(api, deployment_namespace, deployment_name):
     return (
-        get_deployment_status(api, deployment_namespace,
-                              deployment_name).ready_replicas
+        get_deployment_status(api, deployment_namespace, deployment_name).ready_replicas
         or 0
     )
 
@@ -113,8 +112,7 @@ def handle_worker_type(cfg):
     else:
         adjustment = min([capacity, desired])
         log = log.bind(adjustment=adjustment)
-        log.info(
-            f"Need to increase capacity from {running} running by {adjustment}")
+        log.info(f"Need to increase capacity from {running} running by {adjustment}")
         if capacity <= 0:
             log.info("Maximum capacity reached")
             return
