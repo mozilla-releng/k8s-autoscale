@@ -1,6 +1,6 @@
 worker_types:
-  - name: beetmoverworker-dev
-    provisioner: scriptworker-prov-v1
+  - name: gecko-1-beetmover-dev
+    provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: dev-beetmover
     deployment_name: beetmover-dev-relengworker-app-1
