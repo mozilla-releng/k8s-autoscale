@@ -3,7 +3,7 @@ worker_types:
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: dev-beetmover
-    deployment_name: beetmover-dev-relengworker-app-1
+    deployment_name: beetmover-dev-relengworker-firefox-1
     autoscale:
       algorithm: sla
       args:
