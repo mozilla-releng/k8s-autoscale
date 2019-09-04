@@ -10,6 +10,5 @@ worker_types:
         max_replicas: 20
         avg_task_duration: 120
         sla_seconds: 240
-        # cover 80% of pending
-        capacity_ratio: 0.8
+        capacity_ratio: 1.0
         min_replicas: 1

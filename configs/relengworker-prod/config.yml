@@ -1,1 +1,58 @@
-worker_types: []
+worker_types:
+
+  - name: appservices-3-beetmover
+    provisioner: scriptworker-k8s
+    poll_interval: 180
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-applicationservices-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 120
+        sla_seconds: 240
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - name: gecko-3-beetmover
+    provisioner: scriptworker-k8s
+    poll_interval: 180
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 40
+        avg_task_duration: 120
+        sla_seconds: 240
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+
+  - name: mobile-3-beetmover
+    provisioner: scriptworker-k8s
+    poll_interval: 180
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-mobile-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 120
+        sla_seconds: 240
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - name: comm-3-beetmover
+    provisioner: scriptworker-k8s
+    poll_interval: 180
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-thunderbird-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 120
+        sla_seconds: 240
+        capacity_ratio: 1.0
+        min_replicas: 1
