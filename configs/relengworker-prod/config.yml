@@ -57,7 +57,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - name: gecko-t-beetmover
+  - name: gecko-1-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
