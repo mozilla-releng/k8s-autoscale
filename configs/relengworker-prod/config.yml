@@ -70,3 +70,17 @@ worker_types:
         sla_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 1
+
+  - name: gecko-t-balrog
+    provisioner: scriptworker-k8s
+    poll_interval: 180
+    deployment_namespace: prod-balrog
+    deployment_name: balrog-prod-relengworker-fake-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 120
+        sla_seconds: 240
+        capacity_ratio: 1.0
+        min_replicas: 1
