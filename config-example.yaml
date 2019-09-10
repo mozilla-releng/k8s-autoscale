@@ -1,7 +1,6 @@
 worker_types:
   - name: shipitscript-v1
     provisioner: scriptworker-prov-v1
-    poll_interval: 180
     deployment_namespace: default
     deployment_name: nginx-1
     # remove kube_config and kube_connfig_context to use in-cluster auth

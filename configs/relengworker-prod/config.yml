@@ -2,7 +2,6 @@ worker_types:
 
   - name: appservices-3-beetmover
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-beetmover
     deployment_name: beetmover-prod-relengworker-applicationservices-1
     autoscale:
@@ -16,7 +15,6 @@ worker_types:
 
   - name: gecko-3-beetmover
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-beetmover
     deployment_name: beetmover-prod-relengworker-firefox-1
     autoscale:
@@ -31,7 +29,6 @@ worker_types:
 
   - name: mobile-3-beetmover
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-beetmover
     deployment_name: beetmover-prod-relengworker-mobile-1
     autoscale:
@@ -45,7 +42,6 @@ worker_types:
 
   - name: comm-3-beetmover
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-beetmover
     deployment_name: beetmover-prod-relengworker-thunderbird-1
     autoscale:
@@ -59,7 +55,6 @@ worker_types:
 
   - name: gecko-1-beetmover
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-beetmover
     deployment_name: beetmover-prod-relengworker-fake-firefox-1
     autoscale:
@@ -73,7 +68,6 @@ worker_types:
 
   - name: gecko-t-balrog
     provisioner: scriptworker-k8s
-    poll_interval: 180
     deployment_namespace: prod-balrog
     deployment_name: balrog-prod-relengworker-fake-firefox-1
     autoscale:
