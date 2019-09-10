@@ -1,6 +1,6 @@
 worker_types:
 
-  - name: appservices-3-beetmover
+  - worker_type: appservices-3-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
@@ -14,7 +14,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - name: gecko-3-beetmover
+  - worker_type: gecko-3-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
@@ -29,7 +29,7 @@ worker_types:
         min_replicas: 1
 
 
-  - name: mobile-3-beetmover
+  - worker_type: mobile-3-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
@@ -43,7 +43,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - name: comm-3-beetmover
+  - worker_type: comm-3-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
@@ -57,7 +57,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - name: gecko-1-beetmover
+  - worker_type: gecko-1-beetmover
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-beetmover
@@ -71,7 +71,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - name: gecko-t-balrog
+  - worker_type: gecko-t-balrog
     provisioner: scriptworker-k8s
     poll_interval: 180
     deployment_namespace: prod-balrog

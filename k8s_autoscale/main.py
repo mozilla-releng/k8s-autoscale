@@ -60,7 +60,7 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 def handle_worker_type(cfg):
     min_replicas = cfg["autoscale"]["args"]["min_replicas"]
     log = logger.bind(
-        worker_type=cfg["name"],
+        worker_type=cfg["worker_type"],
         provisioner=cfg["provisioner"],
         deployment_namespace=cfg["deployment_namespace"],
         deployment_name=cfg["deployment_name"],
@@ -79,7 +79,7 @@ def handle_worker_type(cfg):
     log = log.bind(capacity=capacity)
 
     log.info("Checking pending")
-    pending = q.pendingTasks(cfg["provisioner"], cfg["name"])["pendingTasks"]
+    pending = q.pendingTasks(cfg["provisioner"], cfg["worker_type"])["pendingTasks"]
     log = log.bind(pending=pending)
     log.info("Calculated desired replica count")
     desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])

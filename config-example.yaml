@@ -1,5 +1,5 @@
-worker_types:
-  - name: shipitscript-v1
+worker_type:
+  - worker_type: shipitscript-v1
     provisioner: scriptworker-prov-v1
     poll_interval: 180
     deployment_namespace: default
