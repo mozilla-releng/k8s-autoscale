@@ -66,15 +66,54 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  - worker_type: gecko-t-balrog
+  - worker_type: gecko-3-balrog
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-balrog
+    deployment_name: balrog-prod-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - worker_type: gecko-1-balrog
     provisioner: scriptworker-k8s
     deployment_namespace: prod-balrog
     deployment_name: balrog-prod-relengworker-fake-firefox-1
     autoscale:
       algorithm: sla
       args:
-        max_replicas: 20
-        avg_task_duration: 120
-        sla_seconds: 240
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - worker_type: comm-3-balrog
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-balrog
+    deployment_name: balrog-prod-relengworker-thunderbird-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - worker_type: comm-1-balrog
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-balrog
+    deployment_name: balrog-prod-relengworker-fake-thunderbird-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 1

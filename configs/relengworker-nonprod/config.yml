@@ -11,3 +11,18 @@ worker_types:
         sla_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 1
+
+
+worker_types:
+  - worker_type: gecko-1-balrog-dev
+    provisioner: scriptworker-k8s
+    deployment_namespace: dev-balrog
+    deployment_name: balrog-dev-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
