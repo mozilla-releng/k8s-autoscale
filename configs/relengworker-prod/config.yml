@@ -131,19 +131,15 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-  # TODO: Once we add definitions for production signing in https://github.com/mozilla-services/cloudops-infra/blob/master/projects/relengworker/k8s/values/signing.yaml#L14
-  ## we should uncomment the bellow block
-  ## add something similar for other products (mobile, Thunderbird, etc)
-  #
-  #- worker_type: gecko-3-signing
-    #provisioner: scriptworker-k8s
-    #deployment_namespace: prod-signing
-    #deployment_name: signing-prod-relengworker-firefox-1
-    #autoscale:
-      #algorithm: sla
-      #args:
-        #max_replicas: 40
-        #avg_task_duration: 60
-        #sla_seconds: 120
-        #capacity_ratio: 1.0
-        #min_replicas: 1
+  - worker_type: gecko-3-signing
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 40
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
