@@ -117,3 +117,29 @@ worker_types:
         sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 1
+
+  - worker_type: gecko-3-addon
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-addon
+    deployment_name: addon-prod-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 240
+        sla_seconds: 480
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - worker_type: gecko-1-addon
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-addon
+    deployment_name: addon-prod-relengworker-fake-firefox-1 
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 240
+        sla_seconds: 480
+        capacity_ratio: 1.0
+        min_replicas: 1
