@@ -73,7 +73,7 @@ worker_types:
     autoscale:
       algorithm: sla
       args:
-        max_replicas: 10
+        max_replicas: 30
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
@@ -141,5 +141,29 @@ worker_types:
         max_replicas: 10
         avg_task_duration: 240
         sla_seconds: 480
+
+  - worker_type: gecko-t-signing
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-fake-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
+
+  - worker_type: gecko-3-signing
+    provisioner: scriptworker-k8s
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefox-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 40
+        avg_task_duration: 60
+        sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 1
