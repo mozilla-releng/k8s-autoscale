@@ -1,6 +1,7 @@
 worker_types:
   - worker_type: gecko-1-beetmover-dev
     provisioner: scriptworker-k8s
+    root_url: "https://taskcluster.net"
     deployment_namespace: dev-beetmover
     deployment_name: beetmover-dev-relengworker-firefox-1
     autoscale:
@@ -16,6 +17,7 @@ worker_types:
 worker_types:
   - worker_type: gecko-1-balrog-dev
     provisioner: scriptworker-k8s
+    root_url: "https://taskcluster.net"
     deployment_namespace: dev-balrog
     deployment_name: balrog-dev-relengworker-firefox-1
     autoscale:
@@ -30,6 +32,7 @@ worker_types:
 worker_types:
   - worker_type: gecko-t-signing-dev
     provisioner: scriptworker-k8s
+    root_url: "https://taskcluster.net"
     deployment_namespace: dev-signing
     deployment_name: signing-dev-relengworker-firefox-1
     autoscale:

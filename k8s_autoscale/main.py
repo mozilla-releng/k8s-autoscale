@@ -8,7 +8,6 @@ from k8s_autoscale.sla import get_new_worker_count
 from taskcluster import Queue
 
 logger = get_logger()
-q = Queue({"rootUrl": "https://taskcluster.net"})
 
 
 def autoscale(config):
@@ -79,7 +78,8 @@ def handle_worker_type(cfg):
     log = log.bind(capacity=capacity)
 
     log.info("Checking pending")
-    pending = q.pendingTasks(cfg["provisioner"], cfg["worker_type"])["pendingTasks"]
+    queue = Queue({"rootUrl": cfg["root_url"]})
+    pending = queue.pendingTasks(cfg["provisioner"], cfg["worker_type"])["pendingTasks"]
     log = log.bind(pending=pending)
     log.info("Calculated desired replica count")
     desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
