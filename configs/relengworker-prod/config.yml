@@ -79,7 +79,7 @@ worker_types:
     autoscale:
       algorithm: sla
       args:
-        max_replicas: 60
+        max_replicas: 45
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
