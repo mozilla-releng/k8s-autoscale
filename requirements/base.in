@@ -1,5 +1,6 @@
 click
+jsonschema
 kubernetes
-taskcluster
 pyyaml
 structlog
+taskcluster

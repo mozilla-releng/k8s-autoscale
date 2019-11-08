@@ -41,5 +41,10 @@ setup(
     url="https://github.com/mozilla-releng/k8s-autoscale",
     version=version,
     zip_safe=False,
-    entry_points={"console_scripts": ["k8s_autoscale=k8s_autoscale.cli:main"]},
+    entry_points={
+        "console_scripts": [
+            "k8s_autoscale=k8s_autoscale.cli:main",
+            "k8s_autoscale-verify=k8s_autoscale.cli:verify",
+        ],
+    },
 )
