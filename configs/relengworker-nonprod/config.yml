@@ -1,9 +1,9 @@
 worker_types:
   - worker_type: gecko-1-beetmover-dev
     provisioner: scriptworker-k8s
-    root_url: "https://taskcluster.net"
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: dev-beetmover
-    deployment_name: beetmover-dev-relengworker-firefox-1
+    deployment_name: beetmover-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: sla
       args:
@@ -13,13 +13,11 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-
-worker_types:
   - worker_type: gecko-1-balrog-dev
     provisioner: scriptworker-k8s
-    root_url: "https://taskcluster.net"
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: dev-balrog
-    deployment_name: balrog-dev-relengworker-firefox-1
+    deployment_name: balrog-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: sla
       args:
@@ -29,12 +27,11 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 1
 
-worker_types:
   - worker_type: gecko-t-signing-dev
     provisioner: scriptworker-k8s
-    root_url: "https://taskcluster.net"
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: dev-signing
-    deployment_name: signing-dev-relengworker-firefox-1
+    deployment_name: signing-dev-relengworker-firefoxci-gecko-t-1
     autoscale:
       algorithm: sla
       args:
