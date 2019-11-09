@@ -96,6 +96,8 @@ tasks:
             DOCKERHUB_EMAIL: release+dockerhub+services@mozilla.com
             DOCKERHUB_USER: mozillarelengservices
             TAG: mozilla/releng-k8s-autoscale:${docker_tag}
+            REPO_URL: '${repository}'
+            GIT_HEAD_REV: '${head_rev}'
           command:
             - bash
             - -ce
@@ -135,6 +137,9 @@ tasks:
             dind: true
           maxRunTime: 3600
           image: mozillareleases/python-test-runner
+          env:
+            REPO_URL: '${repository}'
+            GIT_HEAD_REV: '${head_rev}'
           command:
             - bash
             - -ce
