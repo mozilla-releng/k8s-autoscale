@@ -18,21 +18,20 @@ tasks:
 
     owner: ${event.sender.login}@users.noreply.github.com
 
-    shouldPush:
+    push_docker_image:
       $if: 'tasks_for == "github-pull-request"'
-      then: false
+      then: '0'
       else:
         $if: 'event.repository.html_url != "https://github.com/mozilla-releng/k8s-autoscale"'
-        then:
-          false
+        then: '0'
         else:
           $if: 'tasks_for == "github-release"'
-          then: false
+          then: '0'
           else:
             # push the docker image only for changes on the production and master branches
             $if: 'event.ref in ["refs/heads/production", "refs/heads/master"]'
-            then: true
-            else: false
+            then: '1'
+            else: '0'
 
     docker_tag:
       $if: 'tasks_for == "github-pull-request"'
@@ -75,88 +74,58 @@ tasks:
         owner: ${owner}
         source: ${repository}/raw/${head_rev}/.taskcluster.yml
 
-    - $if: 'shouldPush'
-      then:
-        taskId: '${as_slugid("docker_push")}'
-        dependencies:
-          - '${as_slugid("py37")}'
-        provisionerId: releng-3
-        workerType: linux
-        created: {$fromNow: ''}
-        deadline: {$fromNow: '24 hours'}
-        payload:
-          features:
-            # Needed for access to secret
-            taskclusterProxy: true
-            dind: true
-          maxRunTime: 3600
-          image: mozillareleases/python-test-runner
-          env:
-            SECRET_URL: http://taskcluster/secrets/v1/secret/project/releng/k8s-autoscale/deploy
-            DOCKERHUB_EMAIL: release+dockerhub+services@mozilla.com
-            DOCKERHUB_USER: mozillarelengservices
-            TAG: mozilla/releng-k8s-autoscale:${docker_tag}
-            REPO_URL: '${repository}'
-            GIT_HEAD_REV: '${head_rev}'
-          command:
-            - bash
-            - -ce
-            - >-
-              git clone ${repository} /src &&
-              cd /src &&
-              git config advice.detachedHead false &&
-              git checkout ${head_rev} &&
-              docker.d/generate_version_json.sh &&
-              docker build -f Dockerfile -t mozilla/releng-k8s-autoscale:${docker_tag} . &&
-              docker save mozilla/releng-k8s-autoscale:${docker_tag} > /tmp/image.tar &&
+    - taskId: '${as_slugid("docker")}'
+      dependencies:
+        - '${as_slugid("py37")}'
+      provisionerId:
+        $if: 'push_docker_image == "1"'
+        then: 'releng-3'
+        else: 'releng-t'
+      workerType: linux
+      created: {$fromNow: ''}
+      deadline: {$fromNow: '24 hours'}
+      payload:
+        features:
+          # Needed for access to secret
+          taskclusterProxy: true
+          dind: true
+        maxRunTime: 3600
+        image: 'docker:1.6.2'
+        env:
+          SECRET_URL: http://taskcluster/secrets/v1/secret/project/releng/k8s-autoscale/deploy
+          DOCKERHUB_EMAIL: release+dockerhub+services@mozilla.com
+          DOCKERHUB_USER: mozillarelengservices
+          TAG: mozilla/releng-k8s-autoscale:${docker_tag}
+          REPO_URL: '${repository}'
+          GIT_HEAD_REV: '${head_rev}'
+          PUSH_DOCKER_IMAGE: '${push_docker_image}'
+        command:
+          - sh
+          - -lxce
+          - >-
+            cd /tmp &&
+            wget ${repository}/archive/${head_rev}.tar.gz &&
+            tar zxf ${head_rev}.tar.gz &&
+            mv k8s-autoscale-${head_rev} /src &&
+            cd /src/ &&
+            docker.d/generate_version_json.sh &&
+            docker build -f Dockerfile -t mozilla/releng-k8s-autoscale:${docker_tag} . &&
+            if [ "$PUSH_DOCKER_IMAGE" == "1" ]; then
               ./docker.d/push_image.sh
-          artifacts:
-            public/image.tar:
-              expires: {$fromNow: '8 weeks'}
-              path: /tmp/image.tar
-              type: file
-        scopes:
-          - secrets:get:project/releng/k8s-autoscale/deploy
-        metadata:
-          name: build and push docker image (${docker_tag})
-          description: build and push docker image (${docker_tag})
-          owner: ${owner}
-          source: ${repository}/raw/${head_rev}/.taskcluster.yml
-
-      else: # run docker build to verify it works
-        taskId: '${as_slugid("docker_build")}'
-        dependencies:
-          - '${as_slugid("py37")}'
-        provisionerId: releng-t
-        workerType: linux
-        created: {$fromNow: ''}
-        deadline: {$fromNow: '24 hours'}
-        payload:
-          features:
-            dind: true
-          maxRunTime: 3600
-          image: mozillareleases/python-test-runner
-          env:
-            REPO_URL: '${repository}'
-            GIT_HEAD_REV: '${head_rev}'
-          command:
-            - bash
-            - -ce
-            - >-
-              git clone ${repository} /src &&
-              cd /src &&
-              git config advice.detachedHead false &&
-              git checkout ${head_rev} &&
-              docker.d/generate_version_json.sh &&
-              docker build -f Dockerfile -t mozilla/releng-k8s-autoscale:${docker_tag} . &&
-              docker save mozilla/releng-k8s-autoscale:${docker_tag} > /tmp/image.tar
-          artifacts:
-            public/image.tar:
-              expires: {$fromNow: '2 weeks'}
-              path: /tmp/image.tar
-              type: file
-        metadata:
-          name: docker build (${docker_tag})
-          description: build docker image (${docker_tag})
+            fi
+      scopes:
+        $if: 'push_docker_image == "0"'
+        then: []
+        else:
+          - 'secrets:get:project/releng/scriptworker-scripts/deploy'
+      metadata:
+        $let:
+          description:
+            $if: 'push_docker_image == "0"'
+            then: 'build docker image (${docker_tag})'
+            else: 'build and push docker image (${docker_tag})'
+        in:
+          name: '${description}'
+          description: '${description}'
           owner: ${owner}
           source: ${repository}/raw/${head_rev}/.taskcluster.yml
