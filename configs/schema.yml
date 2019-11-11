@@ -32,7 +32,6 @@ definitions:
         type: string
         enum:
           - "https://firefox-ci-tc.services.mozilla.com"
-          - "https://taskcluster.net"
       deployment_namespace:
         type: string
       deployment_name:
