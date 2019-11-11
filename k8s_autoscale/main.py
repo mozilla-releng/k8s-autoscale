@@ -3,9 +3,10 @@ import time
 
 import kubernetes
 import yaml
+from taskcluster import Queue
+
 from k8s_autoscale.logging import get_logger
 from k8s_autoscale.sla import get_new_worker_count
-from taskcluster import Queue
 
 logger = get_logger()
 

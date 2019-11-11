@@ -1,0 +1,77 @@
+---
+type: object
+title: Autoscaler config specification
+additionalProperties: false
+required:
+  - worker_types
+properties:
+  worker_types:
+    type: array
+    items:
+      $ref: '#/definitions/workerType'
+
+definitions:
+  workerType:
+    type: object
+    additionalProperties: false
+    required:
+      - worker_type
+      - provisioner
+      - root_url
+      - deployment_namespace
+      - deployment_name
+      - autoscale
+    properties:
+      worker_type:
+        type: string
+      provisioner:
+        type: string
+        enum:
+          - scriptworker-k8s
+      root_url:
+        type: string
+        enum:
+          - "https://firefox-ci-tc.services.mozilla.com"
+      deployment_namespace:
+        type: string
+      deployment_name:
+        type: string
+      autoscale:
+        schema:
+          $ref: "#/definitions/autoscale"
+
+  autoscale:
+    type: object
+    additionalProperties: false
+    required:
+      - algorithm
+      - args
+    properties:
+      algorithm:
+        type: string
+        enum:
+          - sla
+      args:
+        schema:
+          $ref: "#/definitions/args"
+
+  args:
+    type: object
+    additionalProperties: false
+    required:
+      - avg_task_duration
+      - capacity_ratio
+      - max_replicas
+      - min_replicas
+      - sla_seconds
+    properties:
+      avs_task_duration:
+        type: integer
+      capacity_ratio:
+        type: number
+      max_replicas:
+        type: integer
+      min_replicas:
+        type: integer
+      sla_seconds:
+        type: integer
