@@ -1,14 +1,17 @@
 #/bin/bash
 
-set -xe
-commit=$(git rev-parse HEAD)
-version=$(cat version.txt)
+test $GIT_HEAD_REV
+test $TASK_ID
+test $TASKCLUSTER_ROOT_URL
+test $REPO_URL
 
 cat > version.json <<EOF
 {
-    "commit": "${commit}",
-    "version": "${version}",
-    "source": "https://github.com/mozilla-releng/k8s-autoscale",
-    "build": "https://tools.taskcluster.net/tasks/${TASK_ID}"
+    "commit": "${GIT_HEAD_REV}",
+    "version": "$(cat ./version.txt)",
+    "source": "${REPO_URL}",
+    "build": "${TASKCLUSTER_ROOT_URL}/tasks/${TASK_ID}"
 }
 EOF
+
+cat ./version.json
