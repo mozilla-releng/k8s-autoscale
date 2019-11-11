@@ -117,7 +117,7 @@ tasks:
         $if: 'push_docker_image == "0"'
         then: []
         else:
-          - 'secrets:get:project/releng/scriptworker-scripts/deploy'
+          - 'secrets:get:project/releng/k8s-autoscale/deploy'
       metadata:
         $let:
           description:
