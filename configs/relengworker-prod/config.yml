@@ -196,3 +196,17 @@ worker_types:
         sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 1
+
+  - worker_type: comm-3-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-comm-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 1
