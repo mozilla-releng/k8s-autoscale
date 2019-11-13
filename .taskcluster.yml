@@ -68,7 +68,7 @@ tasks:
             git config advice.detachedHead false &&
             git checkout ${head_rev} &&
             pip install tox &&
-            tox
+            tox -e py37
       metadata:
         name: tox py37 (${docker_tag})
         description: code linting & unit tests on py37 (${docker_tag})
