@@ -160,13 +160,13 @@ taskcluster-urls==11.0.0 \
     --hash=sha256:2aceab7cf5b1948bc197f2e5e50c371aa48181ccd490b8bada00f1e3baf0c5cc \
     --hash=sha256:74bd2110b5daaebcec5e1d287bf137b61cb8cf6b2d8f5f2b74183e32bc4e7c87 \
     # via taskcluster
-taskcluster==22.0.0 \
-    --hash=sha256:807abbe56682a9d843eb8b98d86e3c88f3393952325205647c00a304ab2d6157 \
-    --hash=sha256:adf8e690a749734f44c1e951548966bc7f39af1219174266bf3ab82dee1d489c \
-    --hash=sha256:c35816e4d469a7469ff39e3126286466dafa7fb7aba37090d0bf07a877da5bc0
-urllib3==1.25.6 \
-    --hash=sha256:3de946ffbed6e6746608990594d08faac602528ac7015ac28d33cee6a45b7398 \
-    --hash=sha256:9a107b99a5393caf59c7aa3c1249c16e6879447533d0887f4336dde834c7be86 \
+taskcluster==22.1.1 \
+    --hash=sha256:07ef947d9b4fed32e4bc3e04b528f66a572944c6e2f907b8067c46b622067796 \
+    --hash=sha256:0b87096327374303fa8ab1a8985917841bc9e704adeade6214f21ded7065dc9e \
+    --hash=sha256:9221e19739f02bac4385fa3b1858028d92244b7f87d3b8e6dffe85e8fa118ff5
+urllib3==1.25.7 \
+    --hash=sha256:a8a318824cc77d1fd4b2bec2ded92646630d7fe8619497b142c84a9e6f5a7293 \
+    --hash=sha256:f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745 \
     # via kubernetes, requests
 websocket-client==0.56.0 \
     --hash=sha256:1151d5fb3a62dc129164292e1227655e4bbc5dd5340a5165dfae61128ec50aa9 \
@@ -190,6 +190,8 @@ zipp==0.6.0 \
     --hash=sha256:f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335 \
     # via importlib-metadata
 
-# WARNING: The following packages were not pinned, but pip requires them to be
-# pinned when the requirements file includes hashes. Consider using the --allow-unsafe flag.
-# setuptools==41.6.0        # via google-auth, jsonschema, kubernetes
+# The following packages are considered to be unsafe in a requirements file:
+setuptools==41.6.0 \
+    --hash=sha256:3e8e8505e563631e7cb110d9ad82d135ee866b8146d5efe06e42be07a72db20a \
+    --hash=sha256:6afa61b391dcd16cb8890ec9f66cc4015a8a31a6e1c2b4e0c464514be1a3d722 \
+    # via google-auth, jsonschema, kubernetes

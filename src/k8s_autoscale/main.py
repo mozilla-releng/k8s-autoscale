@@ -41,10 +41,7 @@ def get_deployment_status(api, deployment_namespace, deployment_name):
 
 
 def get_running(api, deployment_namespace, deployment_name):
-    return (
-        get_deployment_status(api, deployment_namespace, deployment_name).ready_replicas
-        or 0
-    )
+    return get_deployment_status(api, deployment_namespace, deployment_name).ready_replicas or 0
 
 
 def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
@@ -89,9 +86,7 @@ def handle_worker_type(cfg):
         log.info("Zero replicas needed")
         if running < min_replicas:
             log.info("Using min_replicas")
-            adjust_scale(
-                api, min_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
-            )
+            adjust_scale(api, min_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
         return
     if desired < 0:
         log.info(f"Need to remove {abs(desired)} of {running}")
@@ -104,9 +99,7 @@ def handle_worker_type(cfg):
         if target_replicas < min_replicas:
             log.info("Using min_replicas instead of target")
             target_replicas = min_replicas
-        adjust_scale(
-            api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"]
-        )
+        adjust_scale(api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
     else:
         adjustment = min([capacity, desired])
         log = log.bind(adjustment=adjustment)
@@ -114,10 +107,5 @@ def handle_worker_type(cfg):
         if capacity <= 0:
             log.info("Maximum capacity reached")
             return
-        adjust_scale(
-            api,
-            running + adjustment,
-            cfg["deployment_namespace"],
-            cfg["deployment_name"],
-        )
+        adjust_scale(api, running + adjustment, cfg["deployment_namespace"], cfg["deployment_name"])
     log.info("Done handling worker type")

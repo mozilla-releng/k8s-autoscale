@@ -1,12 +1,8 @@
 import pytest
+
 from k8s_autoscale.sla import get_new_worker_count
 
-args = {
-    "max_replicas": 10,
-    "avg_task_duration": 60,
-    "sla_seconds": 300,
-    "capacity_ratio": 1.0,
-}
+args = {"max_replicas": 10, "avg_task_duration": 60, "sla_seconds": 300, "capacity_ratio": 1.0}
 args_capacity = args.copy()
 args_capacity["capacity_ratio"] = 0.5
 

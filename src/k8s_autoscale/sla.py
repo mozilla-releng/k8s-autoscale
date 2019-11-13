@@ -13,9 +13,7 @@ def get_new_worker_count(pending, running, args):
     new_tasks_per_replica = math.floor(args["sla_seconds"] / args["avg_task_duration"])
     # how many tasks can be covered by the running replicas, assuming they are
     # busy and can only take new tasks after they are done with the current one
-    running_tasks_per_replica = (
-        math.floor(args["sla_seconds"] / args["avg_task_duration"]) - 1
-    )
+    running_tasks_per_replica = math.floor(args["sla_seconds"] / args["avg_task_duration"]) - 1
     running_can_cover = running * running_tasks_per_replica
     still_pending = pending - running_can_cover
     if still_pending > 0:
