@@ -3,12 +3,12 @@ FROM python:3.7
 RUN groupadd --gid 10001 app && \
     useradd -g app --uid 10001 --shell /usr/sbin/nologin --create-home --home-dir /app app
 
-USER app
-WORKDIR /app
-
 COPY . /app
 
 RUN chown -R 10001:10001 /app
+
+USER app
+WORKDIR /app
 
 RUN python -m venv /app
 RUN ./bin/pip install -r requirements/base.txt
