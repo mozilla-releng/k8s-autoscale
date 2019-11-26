@@ -124,3 +124,31 @@ worker_types:
         sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
+
+  - worker_type: xpi-t-signing-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-signing
+    deployment_name: signing-dev-relengworker-firefoxci-xpi-t-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mpd001-t-signing-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-signing
+    deployment_name: signing-dev-relengworker-firefoxci-mpd001-t-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
