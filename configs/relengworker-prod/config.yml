@@ -12,7 +12,7 @@ worker_types:
         avg_task_duration: 120
         sla_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-3-beetmover
     provisioner: scriptworker-k8s
@@ -26,7 +26,7 @@ worker_types:
         avg_task_duration: 120
         sla_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
 
   - worker_type: mobile-3-beetmover
@@ -41,7 +41,7 @@ worker_types:
         avg_task_duration: 120
         sla_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: comm-3-beetmover
     provisioner: scriptworker-k8s
@@ -55,7 +55,7 @@ worker_types:
         avg_task_duration: 120
         sla_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-1-beetmover
     provisioner: scriptworker-k8s
@@ -69,7 +69,7 @@ worker_types:
         avg_task_duration: 120
         sla_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-3-balrog
     provisioner: scriptworker-k8s
@@ -83,7 +83,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-1-balrog
     provisioner: scriptworker-k8s
@@ -97,7 +97,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: comm-3-balrog
     provisioner: scriptworker-k8s
@@ -111,7 +111,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: comm-1-balrog
     provisioner: scriptworker-k8s
@@ -125,7 +125,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-3-addon
     provisioner: scriptworker-k8s
@@ -139,7 +139,7 @@ worker_types:
         avg_task_duration: 240
         sla_seconds: 480
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-1-addon
     provisioner: scriptworker-k8s
@@ -167,7 +167,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: gecko-3-signing
     provisioner: scriptworker-k8s
@@ -181,7 +181,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: mobile-3-signing
     provisioner: scriptworker-k8s
@@ -195,7 +195,7 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
 
   - worker_type: comm-3-signing
     provisioner: scriptworker-k8s
@@ -209,4 +209,4 @@ worker_types:
         avg_task_duration: 60
         sla_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 1
+        min_replicas: 0
