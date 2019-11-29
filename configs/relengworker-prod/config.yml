@@ -210,3 +210,311 @@ worker_types:
         sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
+
+  - worker_type: applicationservices-1-beetmover
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-firefoxci-applicationservices-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-1-beetmover
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-beetmover
+    deployment_name: beetmover-prod-relengworker-firefoxci-mobile-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-bouncer
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-bouncer
+    deployment_name: bouncer-prod-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: comm-3-bouncer
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-bouncer
+    deployment_name: bouncer-prod-relengworker-firefoxci-comm-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-3-bouncer
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-bouncer
+    deployment_name: bouncer-prod-relengworker-firefoxci-gecko-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-pushapk
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushapk
+    deployment_name: pushapk-prod-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-3-pushapk
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushapk
+    deployment_name: pushapk-prod-relengworker-firefoxci-gecko-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-1-pushapk
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushapk
+    deployment_name: pushapk-prod-relengworker-firefoxci-mobile-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-3-pushapk
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushapk
+    deployment_name: pushapk-prod-relengworker-firefoxci-mobile-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-3-pushsnap
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushsnap
+    deployment_name: pushsnap-prod-relengworker-firefoxci-gecko-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-pushsnap
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-pushsnap
+    deployment_name: pushsnap-prod-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: comm-1-shipit
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-shipit
+    deployment_name: shipit-prod-relengworker-firefoxci-comm-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: comm-3-shipit
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-shipit
+    deployment_name: shipit-prod-relengworker-firefoxci-comm-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-shipit
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-shipit
+    deployment_name: shipit-prod-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-3-shipit
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-shipit
+    deployment_name: shipit-prod-relengworker-firefoxci-gecko-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: applicationservices-3-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-applicationservices-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: applicationservices-t-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-applicationservices-t-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: comm-t-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-comm-t-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-t-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-mobile-t-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: comm-3-tree
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-tree
+    deployment_name: tree-prod-relengworker-firefoxci-comm-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-tree
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-tree
+    deployment_name: tree-prod-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-3-tree
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-tree
+    deployment_name: tree-prod-relengworker-firefoxci-gecko-3-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0

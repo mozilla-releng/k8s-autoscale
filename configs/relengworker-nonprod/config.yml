@@ -40,3 +40,87 @@ worker_types:
         sla_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
+
+  - worker_type: gecko-1-addon-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-addon
+    deployment_name: addon-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-bouncer-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-bouncer
+    deployment_name: bouncer-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-pushapk-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-pushapk
+    deployment_name: pushapk-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-pushsnap-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-pushsnap
+    deployment_name: pushsnap-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-shipit-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-shipit
+    deployment_name: shipit-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-tree-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-tree
+    deployment_name: tree-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: sla
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        sla_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
