@@ -120,7 +120,7 @@ tasks:
         else:
           - secrets:get:project/releng/k8s-autoscale/deploy
       metadata:
-        name: k8s-autoscale docker build (${release_channel})
-        description: k8s-autoscale docker build (${release_channel})
+        name: k8s-autoscale docker build (${docker_tag})
+        description: k8s-autoscale docker build (${docker_tag})
         owner: ${owner_email}
         source: ${repo_url}
