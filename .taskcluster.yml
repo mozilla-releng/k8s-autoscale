@@ -122,5 +122,5 @@ tasks:
       metadata:
         name: k8s-autoscale docker build (${docker_tag})
         description: k8s-autoscale docker build (${docker_tag})
-        owner: ${owner_email}
+        owner: ${owner}
         source: ${repo_url}
