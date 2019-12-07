@@ -523,7 +523,7 @@ worker_types:
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: prod-signing
-    deployment_name: signing-prod-relengworker-firefoxci-signing-t-1
+    deployment_name: signing-prod-relengworker-firefoxci-xpi-t-1
     autoscale:
       algorithm: sla
       args:
@@ -551,7 +551,7 @@ worker_types:
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: prod-signing
-    deployment_name: signing-prod-relengworker-firefoxci-signing-t-1
+    deployment_name: signing-prod-relengworker-firefoxci-mpd001-t-1
     autoscale:
       algorithm: sla
       args:
