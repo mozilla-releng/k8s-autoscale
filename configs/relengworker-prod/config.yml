@@ -211,7 +211,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: applicationservices-1-beetmover
+  - worker_type: appservices-1-beetmover
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: prod-beetmover
@@ -421,7 +421,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: applicationservices-3-signing
+  - worker_type: appservices-3-signing
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: prod-signing
@@ -435,7 +435,7 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: applicationservices-t-signing
+  - worker_type: appservices-t-signing
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: prod-signing
