@@ -1,20 +1,18 @@
+import logging
 import os.path
 import time
 
 import kubernetes
-import yaml
 from taskcluster import Queue
 
-from k8s_autoscale.logging import get_logger
 from k8s_autoscale.sla import get_new_worker_count
 
-logger = get_logger()
+logger = logging.getLogger(__name__)
 
 
-def autoscale(config):
-    config = yaml.safe_load(config)
+def autoscale(worker_types):
     while True:
-        for worker_type in config["worker_types"]:
+        for worker_type in worker_types:
             # TODO: run in parallel
             handle_worker_type(worker_type)
         logger.info("Sleeping between polls")
@@ -48,7 +46,7 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
     # "add" works as "replace" in case we have more than 0 replicas.
     # "replace" fails in case we don't have any replicas running
     patch = [{"op": "add", "path": "/spec/replicas", "value": target_replicas}]
-    logger.debug("PATCH object", patch=patch)
+    logger.debug("PATCH object: %s", patch)
     api.patch_namespaced_deployment_scale(
         name=deployment_name, namespace=deployment_namespace, body=patch
     )
@@ -56,7 +54,7 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 
 def handle_worker_type(cfg):
     min_replicas = cfg["autoscale"]["args"]["min_replicas"]
-    log = logger.bind(
+    log_env = dict(
         worker_type=cfg["worker_type"],
         provisioner=cfg["provisioner"],
         deployment_namespace=cfg["deployment_namespace"],
@@ -64,48 +62,49 @@ def handle_worker_type(cfg):
         min_replicas=min_replicas,
     )
     api = get_api(cfg.get("kube_connfig"), cfg.get("kube_connfig_context"))
-    log.info("Handling worker type. Getting the number of running replicas...")
+    logger.info("Handling worker type. Getting the number of running replicas...", extra=log_env)
     running = get_running(
         api=api,
         deployment_namespace=cfg["deployment_namespace"],
         deployment_name=cfg["deployment_name"],
     )
-    log = log.bind(running=running)
-    log.info("Calculating capacity")
+    log_env["running"] = running
+    logger.info("Calculating capacity", extra=log_env)
     capacity = cfg["autoscale"]["args"]["max_replicas"] - running
-    log = log.bind(capacity=capacity)
+    log_env["capacity"] = capacity
 
-    log.info("Checking pending")
+    logger.info("Checking pending", extra=log_env)
     queue = Queue({"rootUrl": cfg["root_url"]})
     pending = queue.pendingTasks(cfg["provisioner"], cfg["worker_type"])["pendingTasks"]
-    log = log.bind(pending=pending)
-    log.info("Calculated desired replica count")
+    log_env["pending"] = pending
+    logger.info("Calculated desired replica count", extra=log_env)
     desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
-    log = log.bind(desired=desired)
+    log_env["desired"] = desired
     if desired == 0:
-        log.info("Zero replicas needed")
+        logger.info("Zero replicas needed", extra=log_env)
         if running < min_replicas:
-            log.info("Using min_replicas")
+            logger.info("Using min_replicas", extra=log_env)
             adjust_scale(api, min_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
         return
     if desired < 0:
-        log.info(f"Need to remove {abs(desired)} of {running}")
+        logger.info("Need to remove %s of %s", abs(desired), running, extra=log_env)
         target_replicas = running + desired
-        log = log.bind(target_replicas=target_replicas)
+        log_env["target_replicas"] = target_replicas
         if target_replicas < 0:
-            log.info("Target is negative, setting to zero")
+            logger.info("Target is negative, setting to zero", extra=log_env)
             target_replicas = 0
-            log = log.bind(target_replicas=target_replicas)
+            log_env["target_replicas"] = target_replicas
         if target_replicas < min_replicas:
-            log.info("Using min_replicas instead of target")
+            logger.info("Using min_replicas instead of target", extra=log_env)
             target_replicas = min_replicas
+            log_env["target_replicas"] = target_replicas
         adjust_scale(api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
     else:
         adjustment = min([capacity, desired])
-        log = log.bind(adjustment=adjustment)
-        log.info(f"Need to increase capacity from {running} running by {adjustment}")
+        log_env["adjustment"] = adjustment
+        logger.info("Need to increase capacity from %s running by %s", running, adjustment, extra=log_env)
         if capacity <= 0:
-            log.info("Maximum capacity reached")
+            logger.info("Maximum capacity reached", extra=log_env)
             return
         adjust_scale(api, running + adjustment, cfg["deployment_namespace"], cfg["deployment_name"])
-    log.info("Done handling worker type")
+    logger.info("Done handling worker type", extra=log_env)
