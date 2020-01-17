@@ -1,6 +1,7 @@
 click
+dockerflow
 jsonschema
 kubernetes
 pyyaml
-structlog
+sentry-sdk
 taskcluster
