@@ -3,5 +3,6 @@ dockerflow
 jsonschema
 kubernetes
 pyyaml
+redo
 sentry-sdk
 taskcluster
