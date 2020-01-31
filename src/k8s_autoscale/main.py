@@ -3,7 +3,9 @@ import os.path
 import time
 
 import kubernetes
+from redo import retriable
 from taskcluster import Queue
+from taskcluster.exceptions import TaskclusterRestFailure
 
 from k8s_autoscale.sla import get_new_worker_count
 
@@ -52,6 +54,11 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
     )
 
 
+@retriable(sleeptime=3, max_sleeptime=10, retry_exceptions=(TaskclusterRestFailure,))
+def get_pending(queue, provisioner, worker_type):
+    return queue.pendingTasks(provisioner, worker_type)["pendingTasks"]
+
+
 def handle_worker_type(cfg):
     min_replicas = cfg["autoscale"]["args"]["min_replicas"]
     log_env = dict(
@@ -75,7 +82,7 @@ def handle_worker_type(cfg):
 
     logger.info("Checking pending", extra=log_env)
     queue = Queue({"rootUrl": cfg["root_url"]})
-    pending = queue.pendingTasks(cfg["provisioner"], cfg["worker_type"])["pendingTasks"]
+    pending = get_pending(queue, cfg["provisioner"], cfg["worker_type"])
     log_env["pending"] = pending
     logger.info("Calculated desired replica count", extra=log_env)
     desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
