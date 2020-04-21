@@ -7,11 +7,11 @@ worker_type:
     kube_connfig: ~/.kube/config
     kube_connfig_context: xx
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 20
         avg_task_duration: 60
-        sla_seconds: 300
+        slo_seconds: 300
         # cover 100% of pending
         capacity_ratio: 1.0
         min_replicas: 1
