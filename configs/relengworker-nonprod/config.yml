@@ -5,11 +5,11 @@ worker_types:
     deployment_namespace: dev-beetmover
     deployment_name: beetmover-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 20
         avg_task_duration: 120
-        sla_seconds: 240
+        slo_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -19,11 +19,11 @@ worker_types:
     deployment_namespace: dev-balrog
     deployment_name: balrog-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 10
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -33,11 +33,11 @@ worker_types:
     deployment_namespace: dev-signing
     deployment_name: signing-dev-relengworker-firefoxci-gecko-t-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 20
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -47,11 +47,11 @@ worker_types:
     deployment_namespace: dev-addon
     deployment_name: addon-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -61,11 +61,11 @@ worker_types:
     deployment_namespace: dev-bouncer
     deployment_name: bouncer-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -75,11 +75,11 @@ worker_types:
     deployment_namespace: dev-pushapk
     deployment_name: pushapk-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -89,11 +89,11 @@ worker_types:
     deployment_namespace: dev-pushflatpak
     deployment_name: pushflatpak-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -103,11 +103,11 @@ worker_types:
     deployment_namespace: dev-pushsnap
     deployment_name: pushsnap-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -117,11 +117,11 @@ worker_types:
     deployment_namespace: dev-shipit
     deployment_name: shipit-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -131,11 +131,11 @@ worker_types:
     deployment_namespace: dev-shipit
     deployment_name: shipit-dev-relengworker-firefoxci-mobile-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -145,11 +145,11 @@ worker_types:
     deployment_namespace: dev-tree
     deployment_name: tree-dev-relengworker-firefoxci-gecko-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -159,11 +159,11 @@ worker_types:
     deployment_namespace: dev-signing
     deployment_name: signing-dev-relengworker-firefoxci-xpi-t-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 10
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -173,11 +173,11 @@ worker_types:
     deployment_namespace: dev-shipit
     deployment_name: shipit-dev-relengworker-firefoxci-xpi-1-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 1
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -187,11 +187,11 @@ worker_types:
     deployment_namespace: dev-signing
     deployment_name: signing-dev-relengworker-firefoxci-mpd001-t-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 10
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -201,10 +201,10 @@ worker_types:
     deployment_namespace: dev-signing
     deployment_name: signing-dev-relengworker-firefoxci-adhoc-t-1
     autoscale:
-      algorithm: sla
+      algorithm: slo
       args:
         max_replicas: 10
         avg_task_duration: 60
-        sla_seconds: 120
+        slo_seconds: 120
         capacity_ratio: 1.0
         min_replicas: 0
