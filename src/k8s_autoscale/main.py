@@ -7,7 +7,7 @@ from redo import retriable
 from taskcluster import Queue
 from taskcluster.exceptions import TaskclusterRestFailure
 
-from k8s_autoscale.sla import get_new_worker_count
+from k8s_autoscale.slo import get_new_worker_count
 
 logger = logging.getLogger(__name__)
 
