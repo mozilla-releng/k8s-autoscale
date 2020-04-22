@@ -7,12 +7,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-applicationservices-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-beetmover
     provisioner: scriptworker-k8s
@@ -21,12 +21,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 80
+      min_replicas: 0
       args:
-        max_replicas: 80
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
 
   - worker_type: mobile-3-beetmover
@@ -36,12 +36,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-mobile-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-1-beetmover
     provisioner: scriptworker-k8s
@@ -50,12 +50,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-comm-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 5
+      min_replicas: 0
       args:
-        max_replicas: 5
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-beetmover
     provisioner: scriptworker-k8s
@@ -64,12 +64,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-beetmover
     provisioner: scriptworker-k8s
@@ -78,12 +78,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-balrog
     provisioner: scriptworker-k8s
@@ -92,12 +92,12 @@ worker_types:
     deployment_name: balrog-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 15
+      min_replicas: 0
       args:
-        max_replicas: 15
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-balrog
     provisioner: scriptworker-k8s
@@ -106,12 +106,12 @@ worker_types:
     deployment_name: balrog-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-balrog
     provisioner: scriptworker-k8s
@@ -120,12 +120,12 @@ worker_types:
     deployment_name: balrog-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-1-balrog
     provisioner: scriptworker-k8s
@@ -134,12 +134,12 @@ worker_types:
     deployment_name: balrog-prod-relengworker-firefoxci-comm-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-addon
     provisioner: scriptworker-k8s
@@ -148,12 +148,12 @@ worker_types:
     deployment_name: addon-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 240
         slo_seconds: 480
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-addon
     provisioner: scriptworker-k8s
@@ -162,12 +162,12 @@ worker_types:
     deployment_name: addon-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 240
         slo_seconds: 480
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-t-signing
     provisioner: scriptworker-k8s
@@ -176,12 +176,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-gecko-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-signing
     provisioner: scriptworker-k8s
@@ -190,12 +190,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 100
+      min_replicas: 0
       args:
-        max_replicas: 100
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-3-signing
     provisioner: scriptworker-k8s
@@ -204,12 +204,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-mobile-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-signing
     provisioner: scriptworker-k8s
@@ -218,12 +218,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 20
+      min_replicas: 0
       args:
-        max_replicas: 20
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: appservices-1-beetmover
     provisioner: scriptworker-k8s
@@ -232,12 +232,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-applicationservices-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-1-beetmover
     provisioner: scriptworker-k8s
@@ -246,12 +246,12 @@ worker_types:
     deployment_name: beetmover-prod-relengworker-firefoxci-mobile-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-1-bouncer
     provisioner: scriptworker-k8s
@@ -260,12 +260,12 @@ worker_types:
     deployment_name: bouncer-prod-relengworker-firefoxci-comm-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-bouncer
     provisioner: scriptworker-k8s
@@ -274,12 +274,12 @@ worker_types:
     deployment_name: bouncer-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-bouncer
     provisioner: scriptworker-k8s
@@ -288,12 +288,12 @@ worker_types:
     deployment_name: bouncer-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-bouncer
     provisioner: scriptworker-k8s
@@ -302,12 +302,12 @@ worker_types:
     deployment_name: bouncer-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-pushapk
     provisioner: scriptworker-k8s
@@ -316,12 +316,12 @@ worker_types:
     deployment_name: pushapk-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-pushapk
     provisioner: scriptworker-k8s
@@ -330,12 +330,12 @@ worker_types:
     deployment_name: pushapk-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-1-pushapk
     provisioner: scriptworker-k8s
@@ -344,12 +344,12 @@ worker_types:
     deployment_name: pushapk-prod-relengworker-firefoxci-mobile-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-3-pushapk
     provisioner: scriptworker-k8s
@@ -358,12 +358,12 @@ worker_types:
     deployment_name: pushapk-prod-relengworker-firefoxci-mobile-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-pushflatpak
     provisioner: scriptworker-k8s
@@ -372,12 +372,12 @@ worker_types:
     deployment_name: pushflatpak-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-pushflatpak
     provisioner: scriptworker-k8s
@@ -386,12 +386,12 @@ worker_types:
     deployment_name: pushflatpak-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-pushsnap
     provisioner: scriptworker-k8s
@@ -400,12 +400,12 @@ worker_types:
     deployment_name: pushsnap-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-pushsnap
     provisioner: scriptworker-k8s
@@ -414,12 +414,12 @@ worker_types:
     deployment_name: pushsnap-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-1-shipit
     provisioner: scriptworker-k8s
@@ -428,12 +428,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-comm-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-shipit
     provisioner: scriptworker-k8s
@@ -442,12 +442,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-shipit
     provisioner: scriptworker-k8s
@@ -456,12 +456,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-shipit
     provisioner: scriptworker-k8s
@@ -470,12 +470,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-1-shipit
     provisioner: scriptworker-k8s
@@ -484,12 +484,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-mobile-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-3-shipit
     provisioner: scriptworker-k8s
@@ -498,12 +498,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-mobile-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: appservices-3-signing
     provisioner: scriptworker-k8s
@@ -512,12 +512,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-applicationservices-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: appservices-t-signing
     provisioner: scriptworker-k8s
@@ -526,12 +526,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-applicationservices-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-t-signing
     provisioner: scriptworker-k8s
@@ -540,12 +540,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-comm-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mobile-t-signing
     provisioner: scriptworker-k8s
@@ -554,12 +554,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-mobile-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-1-tree
     provisioner: scriptworker-k8s
@@ -568,12 +568,12 @@ worker_types:
     deployment_name: tree-prod-relengworker-firefoxci-comm-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: comm-3-tree
     provisioner: scriptworker-k8s
@@ -582,12 +582,12 @@ worker_types:
     deployment_name: tree-prod-relengworker-firefoxci-comm-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-1-tree
     provisioner: scriptworker-k8s
@@ -596,12 +596,12 @@ worker_types:
     deployment_name: tree-prod-relengworker-firefoxci-gecko-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: gecko-3-tree
     provisioner: scriptworker-k8s
@@ -610,12 +610,12 @@ worker_types:
     deployment_name: tree-prod-relengworker-firefoxci-gecko-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 3
+      min_replicas: 0
       args:
-        max_replicas: 3
         avg_task_duration: 300
         slo_seconds: 600
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: xpi-t-signing
     provisioner: scriptworker-k8s
@@ -624,12 +624,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-xpi-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: xpi-3-signing
     provisioner: scriptworker-k8s
@@ -638,12 +638,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-xpi-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: xpi-1-shipit
     provisioner: scriptworker-k8s
@@ -652,12 +652,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-xpi-1-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: xpi-3-shipit
     provisioner: scriptworker-k8s
@@ -666,12 +666,12 @@ worker_types:
     deployment_name: shipit-prod-relengworker-firefoxci-xpi-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 1
+      min_replicas: 0
       args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mpd001-t-signing
     provisioner: scriptworker-k8s
@@ -680,12 +680,12 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-mpd001-t-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0
 
   - worker_type: mpd001-3-signing
     provisioner: scriptworker-k8s
@@ -694,9 +694,9 @@ worker_types:
     deployment_name: signing-prod-relengworker-firefoxci-mpd001-3-1
     autoscale:
       algorithm: slo
+      max_replicas: 10
+      min_replicas: 0
       args:
-        max_replicas: 10
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
-        min_replicas: 0

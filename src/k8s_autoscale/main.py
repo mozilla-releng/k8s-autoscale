@@ -7,7 +7,7 @@ from redo import retriable
 from taskcluster import Queue
 from taskcluster.exceptions import TaskclusterRestFailure
 
-from k8s_autoscale.slo import get_new_worker_count
+from k8s_autoscale.slo import get_target_replica_count
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ def get_pending(queue, provisioner, worker_type):
 
 
 def handle_worker_type(cfg):
-    min_replicas = cfg["autoscale"]["args"]["min_replicas"]
+    min_replicas = cfg["autoscale"]["min_replicas"]
     log_env = dict(
         worker_type=cfg["worker_type"],
         provisioner=cfg["provisioner"],
@@ -77,41 +77,28 @@ def handle_worker_type(cfg):
     )
     log_env["running"] = running
     logger.info("Calculating capacity", extra=log_env)
-    capacity = cfg["autoscale"]["args"]["max_replicas"] - running
-    log_env["capacity"] = capacity
+    max_replicas = cfg["autoscale"]["max_replicas"]
+    min_replicas = cfg["autoscale"]["min_replicas"]
+    log_env["max_replicas"] = max_replicas
+    log_env["min_replicas"] = min_replicas
 
     logger.info("Checking pending", extra=log_env)
     queue = Queue({"rootUrl": cfg["root_url"]})
     pending = get_pending(queue, cfg["provisioner"], cfg["worker_type"])
     log_env["pending"] = pending
-    logger.info("Calculated desired replica count", extra=log_env)
-    desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
-    log_env["desired"] = desired
-    if desired == 0:
-        logger.info("Zero replicas needed", extra=log_env)
-        if running < min_replicas:
-            logger.info("Using min_replicas", extra=log_env)
-            adjust_scale(api, min_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
-        return
-    if desired < 0:
-        logger.info("Need to remove %s of %s", abs(desired), running, extra=log_env)
-        target_replicas = running + desired
-        log_env["target_replicas"] = target_replicas
-        if target_replicas < 0:
-            logger.info("Target is negative, setting to zero", extra=log_env)
-            target_replicas = 0
-            log_env["target_replicas"] = target_replicas
-        if target_replicas < min_replicas:
-            logger.info("Using min_replicas instead of target", extra=log_env)
-            target_replicas = min_replicas
-            log_env["target_replicas"] = target_replicas
-        adjust_scale(api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
+    logger.info("Calculating target replica count", extra=log_env)
+    target_replicas = get_target_replica_count(pending, running, cfg["autoscale"]["args"])
+    target_replicas = max(min(target_replicas, max_replicas), min_replicas)
+    log_env["target_replicas"] = target_replicas
+    if target_replicas == running:
+        logger.info("Zero new replicas needed", extra=log_env)
     else:
-        adjustment = min([capacity, desired])
-        log_env["adjustment"] = adjustment
-        logger.info("Need to increase capacity from %s running by %s", running, adjustment, extra=log_env)
-        if capacity <= 0:
-            logger.info("Maximum capacity reached", extra=log_env)
-            return
-        adjust_scale(api, running + adjustment, cfg["deployment_namespace"], cfg["deployment_name"])
+        if target_replicas < running:
+            logger.info(f"Need to remove {running-target_replicas} of {running}", extra=log_env)
+        else:
+            logger.info(
+                f"Need to increase capacity from {running} running by {target_replicas-running}",
+                extra=log_env,
+            )
+        adjust_scale(api, target_replicas, cfg["deployment_namespace"], cfg["deployment_name"])
     logger.info("Done handling worker type", extra=log_env)
