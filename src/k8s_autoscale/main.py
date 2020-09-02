@@ -109,7 +109,9 @@ def handle_worker_type(cfg):
     else:
         adjustment = min([capacity, desired])
         log_env["adjustment"] = adjustment
-        logger.info("Need to increase capacity from %s running by %s", running, adjustment, extra=log_env)
+        logger.info(
+            "Need to increase capacity from %s running by %s", running, adjustment, extra=log_env
+        )
         if capacity <= 0:
             logger.info("Maximum capacity reached", extra=log_env)
             return
