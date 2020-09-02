@@ -1,12 +1,8 @@
 import pytest
-from k8s_autoscale.sla import get_new_worker_count
 
-args = {
-    "max_replicas": 10,
-    "avg_task_duration": 60,
-    "sla_seconds": 300,
-    "capacity_ratio": 1.0,
-}
+from k8s_autoscale.slo import get_new_worker_count
+
+args = {"max_replicas": 10, "avg_task_duration": 60, "slo_seconds": 300, "capacity_ratio": 1.0}
 args_capacity = args.copy()
 args_capacity["capacity_ratio"] = 0.5
 
@@ -33,7 +29,7 @@ def test_process(pending, running, args, expected):
 
 @pytest.mark.parametrize(
     "pending, running, args, exception_type",
-    [(0, 0, {"sla_seconds": 10, "avg_task_duration": 20}, AssertionError)],
+    [(0, 0, {"slo_seconds": 10, "avg_task_duration": 20}, AssertionError)],
 )
 def test_process_raises(pending, running, args, exception_type):
     with pytest.raises(exception_type):
