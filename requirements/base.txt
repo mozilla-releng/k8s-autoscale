@@ -59,9 +59,9 @@ jsonschema==3.2.0 \
     --hash=sha256:4e5b3cf8216f577bee9ce139cbe72eca3ea4f292ec60928ff24758ce626cd163 \
     --hash=sha256:c8a85b28d377cc7737e46e2d9f2b4f44ee3c0e1deac6bf46ddefc7187d30797a \
     # via -r base.in
-kubernetes==11.0.0 \
-    --hash=sha256:1a2472f8b01bc6aa87e3a34781f859bded5a5c8ff791a53d889a8bd6cc550430 \
-    --hash=sha256:4af81201520977139a143f96123fb789fa351879df37f122916b9b6ed050bbaf \
+kubernetes==12.0.0b1 \
+    --hash=sha256:fd943b1464d3ecbc99beacd0d312ffd92a81a5eabe33446f99dfbcceedffb41a\
+    --hash=sha256:6881c66380abfd3711c5a9b1850fbd200ab2f029025ad56e3f02e591b7fe8256\
     # via -r base.in
 mohawk==1.1.0 \
     --hash=sha256:3ed296a30453d0b724679e0fd41e4e940497f8e461a9a9c3b7f36e43bab0fa09 \
