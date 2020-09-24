@@ -30,7 +30,7 @@ def get_api(kube_config, kube_config_context):
     else:
         logger.info("Using in-cluster config")
         api_client = kubernetes.config.load_incluster_config()
-    api = kubernetes.client.AppsV1beta2Api(api_client=api_client)
+    api = kubernetes.client.AppsV1Api(api_client=api_client)
     return api
 
 
