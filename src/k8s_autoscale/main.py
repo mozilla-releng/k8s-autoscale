@@ -55,8 +55,8 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 
 
 @retriable(sleeptime=3, max_sleeptime=10, retry_exceptions=(TaskclusterRestFailure,))
-def get_pending(queue, provisioner, worker_type):
-    return queue.pendingTasks(provisioner, worker_type)["pendingTasks"]
+def get_pending(queue, worker_type):
+    return queue.pendingTasks(worker_type)["pendingTasks"]
 
 
 def handle_worker_type(cfg):
@@ -82,7 +82,7 @@ def handle_worker_type(cfg):
 
     logger.info("Checking pending", extra=log_env)
     queue = Queue({"rootUrl": cfg["root_url"]})
-    pending = get_pending(queue, cfg["provisioner"], cfg["worker_type"])
+    pending = get_pending(queue, cfg["worker_type"])
     log_env["pending"] = pending
     logger.info("Calculated desired replica count", extra=log_env)
     desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
