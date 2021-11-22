@@ -55,8 +55,9 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 
 
 @retriable(sleeptime=3, max_sleeptime=10, retry_exceptions=(TaskclusterRestFailure,))
-def get_pending(queue, worker_type):
-    return queue.pendingTasks(worker_type)["pendingTasks"]
+def get_pending(queue, provisioner, worker_type):
+    taskQueueId = provisioner + "/" + worker_type
+    return queue.pendingTasks(taskQueueId)["pendingTasks"]
 
 
 def handle_worker_type(cfg):
