@@ -223,11 +223,11 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: mozillavpn-t-pushdeb-dev
+  - worker_type: mozillavpn-1-pushdeb-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: dev-pushdeb
-    deployment_name: pushdeb-dev-relengworker-firefoxci-mozillavpn-t-1
+    deployment_name: pushdeb-dev-relengworker-firefoxci-mozillavpn-1-1
     autoscale:
       algorithm: slo
       args:
