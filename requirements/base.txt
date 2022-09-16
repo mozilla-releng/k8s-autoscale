@@ -27,9 +27,9 @@ chardet==4.0.0
 charset-normalizer==2.0.7
     # via requests
 click==8.0.3
-    # via -r requirements/base.in
+    # via -r base.in
 dockerflow==2021.7.0
-    # via -r requirements/base.in
+    # via -r base.in
 google-auth==2.3.2
     # via kubernetes
 idna==3.3
@@ -37,16 +37,16 @@ idna==3.3
     #   requests
     #   yarl
 jsonschema==4.1.2
-    # via -r requirements/base.in
+    # via -r base.in
 kubernetes==19.15.0
-    # via -r requirements/base.in
+    # via -r base.in
 mohawk==1.1.0
     # via taskcluster
 multidict==5.2.0
     # via
     #   aiohttp
     #   yarl
-oauthlib==3.1.1
+oauthlib==3.2.1
     # via requests-oauthlib
 pyasn1==0.4.8
     # via
@@ -60,10 +60,10 @@ python-dateutil==2.8.2
     # via kubernetes
 pyyaml==6.0
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   kubernetes
 redo==2.0.4
-    # via -r requirements/base.in
+    # via -r base.in
 requests==2.26.0
     # via
     #   kubernetes
@@ -74,7 +74,7 @@ requests-oauthlib==1.3.0
 rsa==4.7.2
     # via google-auth
 sentry-sdk==1.4.3
-    # via -r requirements/base.in
+    # via -r base.in
 six==1.16.0
     # via
     #   google-auth
@@ -85,7 +85,7 @@ six==1.16.0
 slugid==2.0.0
     # via taskcluster
 taskcluster==44.2.2
-    # via -r requirements/base.in
+    # via -r base.in
 taskcluster-urls==13.0.1
     # via taskcluster
 typing-extensions==3.10.0.2
