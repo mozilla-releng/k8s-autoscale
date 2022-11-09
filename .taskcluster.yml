@@ -53,7 +53,7 @@ tasks:
   in:
     - taskId: '${as_slugid("py38")}'
       provisionerId: releng-t
-      workerType: linux
+      workerType: linux-gcp
       created: {$fromNow: ''}
       deadline: {$fromNow: '4 hours'}
       payload:
@@ -81,7 +81,7 @@ tasks:
       created: {$fromNow: ''}
       deadline: {$fromNow: '24 hours'}
       provisionerId: 'releng-${worker_level}'
-      workerType: linux
+      workerType: linux-gcp
       routes: []
       payload:
         maxRunTime: 3600
