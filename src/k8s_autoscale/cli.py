@@ -22,7 +22,7 @@ def main(config):
     if os.environ.get("SENTRY_DSN") and os.environ.get("ENV"):
         configure_sentry(environment=os.environ["ENV"], sentry_dsn=os.environ["SENTRY_DSN"])
     config = yaml.safe_load(config)
-    autoscale(config["worker_types"])
+    autoscale(config["worker_types"], config.get("healthcheck_file"))
 
 
 @click.command()
