@@ -1,5 +1,6 @@
 import logging
 import os.path
+import pathlib
 import time
 
 import kubernetes
@@ -12,13 +13,21 @@ from k8s_autoscale.slo import get_new_worker_count
 logger = logging.getLogger(__name__)
 
 
-def autoscale(worker_types):
+def autoscale(worker_types, healthcheck_file=None):
     while True:
+        touch(healthcheck_file)
         for worker_type in worker_types:
             # TODO: run in parallel
             handle_worker_type(worker_type)
+            touch(healthcheck_file)
         logger.info("Sleeping between polls")
         time.sleep(180)
+
+
+def touch(flag_file):
+    if not flag_file:
+        return
+    pathlib.Path(flag_file).touch()
 
 
 def get_api(kube_config, kube_config_context):

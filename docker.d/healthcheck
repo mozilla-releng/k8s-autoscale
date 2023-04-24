@@ -1,2 +1,13 @@
 #!/bin/bash
+
+set -e
+
+# k8s-autoscale is running
 pgrep k8s_autoscale
+
+# and the flag file was touched less than 10 minutes ago
+FLAG_FILE_MAX_AGE_SEC=$((10 * 60))
+FLAG_FILE=/app/healthy
+NOW=$(date +%s)
+MTIME=$(stat -c %Y $FLAG_FILE)
+test $((NOW - MTIME)) -lt $FLAG_FILE_MAX_AGE_SEC
