@@ -51,14 +51,14 @@ tasks:
         else: 't'
 
   in:
-    - taskId: '${as_slugid("py38")}'
+    - taskId: '${as_slugid("py311")}'
       provisionerId: releng-t
       workerType: linux-gcp
       created: {$fromNow: ''}
       deadline: {$fromNow: '4 hours'}
       payload:
         maxRunTime: 3600
-        image: python:3.8
+        image: python:3.11
         command:
           - sh
           - -lxce
@@ -68,16 +68,16 @@ tasks:
             git config advice.detachedHead false &&
             git checkout ${head_rev} &&
             pip install tox &&
-            tox -e py38
+            tox -e py311
       metadata:
-        name: tox py38 (${docker_tag})
-        description: code linting & unit tests on py38 (${docker_tag})
+        name: tox py311 (${docker_tag})
+        description: code linting & unit tests on py311 (${docker_tag})
         owner: ${owner}
         source: ${repo_url}/raw/${head_rev}/.taskcluster.yml
 
     - taskId: {$eval: as_slugid("docker-build-and-push")}
       dependencies:
-        - '${as_slugid("py38")}'
+        - '${as_slugid("py311")}'
       created: {$fromNow: ''}
       deadline: {$fromNow: '24 hours'}
       provisionerId: 'releng-${worker_level}'

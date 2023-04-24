@@ -40,8 +40,6 @@ setup(
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
     ],
     description="Autoscale scriptworkers in Kubernetes",
     install_requires=requirements,
