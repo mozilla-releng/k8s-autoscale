@@ -55,6 +55,20 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
+  - worker_type: mobile-t-signing-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-signing
+    deployment_name: signing-dev-relengworker-firefoxci-mobile-t-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
   - worker_type: gecko-1-addon-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
