@@ -52,6 +52,7 @@ definitions:
       algorithm:
         type: string
         enum:
+          # https://en.wikipedia.org/wiki/Service-level_objective
           - slo
       args:
         schema:
