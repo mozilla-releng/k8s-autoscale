@@ -1,4 +1,46 @@
 worker_types:
+  - worker_type: gecko-1-addon-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-addon
+    deployment_name: addon-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-balrog-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-balrog
+    deployment_name: balrog-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: xpi-1-balrog-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-balrog
+    deployment_name: balrog-dev-relengworker-firefoxci-xpi-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
   - worker_type: gecko-1-beetmover-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
@@ -27,59 +69,45 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: gecko-1-balrog-dev
+  - worker_type: xpi-1-beetmover-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-balrog
-    deployment_name: balrog-dev-relengworker-firefoxci-gecko-1-1
-    autoscale:
-      algorithm: slo
-      args:
-        max_replicas: 10
-        avg_task_duration: 60
-        slo_seconds: 120
-        capacity_ratio: 1.0
-        min_replicas: 0
-
-  - worker_type: gecko-t-signing-dev
-    provisioner: scriptworker-k8s
-    root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-signing
-    deployment_name: signing-dev-relengworker-firefoxci-gecko-t-1
+    deployment_namespace: dev-beetmover
+    deployment_name: beetmover-dev-relengworker-firefoxci-xpi-1-1
     autoscale:
       algorithm: slo
       args:
         max_replicas: 20
-        avg_task_duration: 60
-        slo_seconds: 120
+        avg_task_duration: 120
+        slo_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: mobile-t-signing-dev
+  - worker_type: mozillavpn-1-beetmover-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-signing
-    deployment_name: signing-dev-relengworker-firefoxci-mobile-t-1
+    deployment_namespace: dev-beetmover
+    deployment_name: beetmover-dev-relengworker-firefoxci-mozillavpn-1-1
     autoscale:
       algorithm: slo
       args:
         max_replicas: 20
-        avg_task_duration: 60
-        slo_seconds: 120
+        avg_task_duration: 120
+        slo_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: gecko-1-addon-dev
+  - worker_type: app-services-1-beetmover-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-addon
-    deployment_name: addon-dev-relengworker-firefoxci-gecko-1-1
+    deployment_namespace: dev-beetmover
+    deployment_name: beetmover-dev-relengworker-firefoxci-app-services-1-1
     autoscale:
       algorithm: slo
       args:
-        max_replicas: 1
-        avg_task_duration: 60
-        slo_seconds: 120
+        max_replicas: 20
+        avg_task_duration: 120
+        slo_seconds: 240
         capacity_ratio: 1.0
         min_replicas: 0
 
@@ -111,11 +139,39 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
+  - worker_type: xpi-1-github-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-github
+    deployment_name: github-dev-relengworker-firefoxci-xpi-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
   - worker_type: gecko-1-pushapk-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
     deployment_namespace: dev-pushapk
     deployment_name: pushapk-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mozillavpn-1-pushapk-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-pushapk
+    deployment_name: pushapk-dev-relengworker-firefoxci-mozillavpn-1-1
     autoscale:
       algorithm: slo
       args:
@@ -181,15 +237,71 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
-  - worker_type: gecko-1-tree-dev
+  - worker_type: xpi-1-shipit-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-tree
-    deployment_name: tree-dev-relengworker-firefoxci-gecko-1-1
+    deployment_namespace: dev-shipit
+    deployment_name: shipit-dev-relengworker-firefoxci-xpi-1-1
     autoscale:
       algorithm: slo
       args:
         max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: adhoc-1-shipit-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-shipit
+    deployment_name: shipit-dev-relengworker-firefoxci-adhoc-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: app-services-1-shipit-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-shipit
+    deployment_name: shipit-dev-relengworker-firefoxci-app-services-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-t-signing-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-signing
+    deployment_name: signing-dev-relengworker-firefoxci-gecko-t-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-t-signing-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-signing
+    deployment_name: signing-dev-relengworker-firefoxci-mobile-t-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 20
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
@@ -204,20 +316,6 @@ worker_types:
       algorithm: slo
       args:
         max_replicas: 10
-        avg_task_duration: 60
-        slo_seconds: 120
-        capacity_ratio: 1.0
-        min_replicas: 0
-
-  - worker_type: xpi-1-shipit-dev
-    provisioner: scriptworker-k8s
-    root_url: "https://firefox-ci-tc.services.mozilla.com"
-    deployment_namespace: dev-shipit
-    deployment_name: shipit-dev-relengworker-firefoxci-xpi-1-1
-    autoscale:
-      algorithm: slo
-      args:
-        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
@@ -246,6 +344,34 @@ worker_types:
       algorithm: slo
       args:
         max_replicas: 10
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: gecko-1-tree-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-tree
+    deployment_name: tree-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: mobile-1-tree-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-tree
+    deployment_name: tree-dev-relengworker-firefoxci-mobile-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
