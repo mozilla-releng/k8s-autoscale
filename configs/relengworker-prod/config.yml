@@ -218,7 +218,7 @@ worker_types:
     autoscale:
       algorithm: slo
       args:
-        max_replicas: 80
+        max_replicas: 40
         avg_task_duration: 120
         slo_seconds: 240
         capacity_ratio: 1.0
@@ -862,7 +862,7 @@ worker_types:
     autoscale:
       algorithm: slo
       args:
-        max_replicas: 100
+        max_replicas: 50
         avg_task_duration: 60
         slo_seconds: 120
         capacity_ratio: 1.0
