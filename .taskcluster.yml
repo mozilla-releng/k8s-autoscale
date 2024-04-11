@@ -92,7 +92,7 @@ tasks:
           # we need to run really old docker version because taskcluster is using
           # really old version in their setup
           # image: docker:stable
-          image: 'docker:1.6.2'
+          image: 'gcr.io/kaniko-project/executor:latest'
           env:
             DOCKERHUB_EMAIL: 'release+dockerhub+services@mozilla.com'
             DOCKERHUB_USER: 'mozillarelengservices'

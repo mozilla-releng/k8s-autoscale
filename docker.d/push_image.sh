@@ -15,9 +15,13 @@ fi
 
 apk -U add jq
 
+echo "=== Loading built image ==="
+docker load < build.tar
+
 echo "=== Re-tagging docker image ==="
 export DOCKER_ARCHIVE_TAG="${DOCKER_TAG}-$(cat ./version.txt)-$(date +%Y%m%d%H%M%S)-${GIT_HEAD_REV}"
-docker tag $DOCKER_REPO:$DOCKER_TAG $DOCKER_REPO:$DOCKER_ARCHIVE_TAG
+docker tag unset-repo/unset-image-name:latest $DOCKER_REPO:$DOCKER_ARCHIVE_TAG
+docker tag unset-repo/unset-image-name:latest $DOCKER_REPO:$DOCKER_TAG
 
 echo "=== Generating dockercfg ==="
 # docker login stopped working in Taskcluster for some reason
