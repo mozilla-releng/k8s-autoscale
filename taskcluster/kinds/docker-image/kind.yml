@@ -1,0 +1,18 @@
+---
+loader: taskgraph.loader.transform:loader
+
+transforms:
+    - taskgraph.transforms.docker_image:transforms
+    - taskgraph.transforms.cached_tasks:transforms
+    - taskgraph.transforms.task:transforms
+
+task-defaults:
+    args:
+        PYTHON_VERSION: "3.11.3"
+
+tasks:
+    k8s_autoscale: {}
+
+    skopeo: {}
+
+    test: {}
