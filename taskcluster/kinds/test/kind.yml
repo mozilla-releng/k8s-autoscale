@@ -1,0 +1,18 @@
+---
+
+tasks:
+  python:
+    description: test k8s-autoscale
+    worker-type: test
+    worker:
+      docker-image: {"in-tree": "test"}
+      max-run-time: 1800
+    run:
+      using: run-task
+      checkout:
+        k8s_autoscale: {}
+      cwd: '{checkout}'
+      command:
+        - tox
+        - -e
+        - py311
