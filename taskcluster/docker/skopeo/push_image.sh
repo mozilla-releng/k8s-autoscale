@@ -3,6 +3,7 @@ set -e
 
 export
 test $DOCKER_REPO
+test $DOCKER_TAG
 test $MOZ_FETCHES_DIR
 test $SECRET_URL
 test $TASKCLUSTER_ROOT_URL
@@ -35,12 +36,16 @@ then
 else
     echo "=== Generating dockercfg ==="
     install -m 600 /dev/null $HOME/.dockercfg
-    curl $SECRET_URL | jq '.secret.dockercfg' > $HOME/.dockercfg
+    curl $SECRET_URL | jq '.secret.docker.dockercfg' > $HOME/.dockercfg
 
     echo "=== Pushing to docker hub ==="
-    DOCKER_TAG="${DOCKER_TAG}-$(cat ./version.txt)-$(date +%Y%m%d%H%M%S)-${GIT_HEAD_REV}"
+    APP_VERSION="$(cat /version.txt)"
+    DOCKER_TAG="$(echo ${DOCKER_TAG} | cut -f3 -d/)"
+    DOCKER_ARCHIVE_TAG="${DOCKER_TAG}-${APP_VERSION}-$(date +%Y%m%d%H%M%S)-${VCS_HEAD_REV}"
     skopeo copy oci:k8s_autoscale:final docker://$DOCKER_REPO:$DOCKER_TAG
     skopeo inspect docker://$DOCKER_REPO:$DOCKER_TAG
+    skopeo copy oci:k8s_autoscale:final docker://$DOCKER_REPO:$DOCKER_ARCHIVE_TAG
+    skopeo inspect docker://$DOCKER_REPO:$DOCKER_ARCHIVE_TAG
 fi
 
 echo "=== Clean up ==="

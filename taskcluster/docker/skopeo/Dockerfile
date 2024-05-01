@@ -30,6 +30,8 @@ RUN ["/usr/local/go/bin/go", "build", \
 FROM debian:buster
 
 # %include-run-task
+# %include version.txt
+COPY topsrcdir/version.txt /version.txt
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq \
