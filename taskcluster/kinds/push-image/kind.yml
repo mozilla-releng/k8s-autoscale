@@ -1,0 +1,60 @@
+---
+loader: taskgraph.loader.transform:loader
+
+transforms:
+    - taskgraph.transforms.task_context
+    - k8s_autoscale_taskgraph.transforms.by_tasks_for
+    - taskgraph.transforms.run
+    - taskgraph.transforms.task
+
+kind-dependencies:
+    - docker-image
+
+tasks:
+    k8s_autoscale:
+        description: push k8s-autoscale image
+
+        task-context:
+            from-parameters:
+                head_repo: head_repository
+                head_rev: head_rev
+                head_ref: head_ref
+            substitution-fields:
+                - worker.env
+
+        worker-type: images
+        worker:
+            taskcluster-proxy: true
+            docker-image: {in-tree: skopeo}
+            max-run-time: 1800
+            env:
+                DRYRUN:
+                    by-tasks-for:
+                        github-push: "0"
+                        default: "1"
+                DOCKER_REPO: mozilla/releng-k8s-autoscale
+                DOCKER_TAG: "{head_ref}"
+                SECRET_URL: http://taskcluster/secrets/v1/secret/project/releng/k8s-autoscale/deploy
+                VCS_HEAD_REPOSITORY: "{head_repo}"
+                VCS_HEAD_REV: "{head_rev}"
+
+        run:
+            using: run-task
+            checkout: false
+            cache-dotcache: false
+            command:
+                - /usr/local/bin/push_image.sh
+
+        dependencies:
+            image: build-docker-image-k8s_autoscale
+
+        fetches:
+            image:
+                - artifact: image.tar.zst
+                  extract: false
+
+        scopes:
+            by-tasks-for:
+                github-push:
+                    - secrets:get:project/releng/k8s-autoscale/deploy
+                default: []
