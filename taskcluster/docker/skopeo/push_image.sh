@@ -36,7 +36,7 @@ then
 else
     echo "=== Generating dockercfg ==="
     mkdir -m 700 $HOME/.docker
-    curl $DEPLOY_SECRET_URL | jq '.secret.docker.dockercfg' > $HOME/.docker/config.json
+    curl $SECRET_URL | jq '.secret.docker.dockercfg' > $HOME/.docker/config.json
     chmod 600 $HOME/.docker/config.json
 
     echo "=== Pushing to docker hub ==="
