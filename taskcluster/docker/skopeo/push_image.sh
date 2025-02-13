@@ -35,8 +35,9 @@ then
     echo "Skipping push because DRYRUN is 1"
 else
     echo "=== Generating dockercfg ==="
-    install -m 600 /dev/null $HOME/.dockercfg
-    curl $SECRET_URL | jq '.secret.docker.dockercfg' > $HOME/.dockercfg
+    mkdir -m 700 $HOME/.docker
+    curl $DEPLOY_SECRET_URL | jq '.secret.docker.dockercfg' > $HOME/.docker/config.json
+    chmod 600 $HOME/.docker/config.json
 
     echo "=== Pushing to docker hub ==="
     APP_VERSION="$(cat /version.txt)"
