@@ -433,4 +433,19 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
+  - worker_type: gecko-1-lando-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-lando
+    deployment_name: lando-dev-relengworker-firefoxci-gecko-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 1
+        # TODO: figure out if these are good values
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
 healthcheck_file: /app/healthy
