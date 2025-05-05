@@ -441,10 +441,13 @@ worker_types:
     autoscale:
       algorithm: slo
       args:
-        max_replicas: 1
-        # TODO: figure out if these are good values
-        avg_task_duration: 60
-        slo_seconds: 120
+        max_replicas: 10
+        # these seem like weird values, and they are, but they effectively mean
+        # "always spin up a new replica for each task"
+        # a better solution would be a new algorithm that means exactly that,
+        # but this is good enough for now
+        avg_task_duration: 1999
+        slo_seconds: 2000
         capacity_ratio: 1.0
         min_replicas: 0
 
