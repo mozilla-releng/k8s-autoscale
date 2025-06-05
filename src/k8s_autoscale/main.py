@@ -21,7 +21,7 @@ def autoscale(worker_types, healthcheck_file=None):
             handle_worker_type(worker_type)
             touch(healthcheck_file)
         logger.info("Sleeping between polls")
-        time.sleep(180)
+        time.sleep(15)
 
 
 def touch(flag_file):
