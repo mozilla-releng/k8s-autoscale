@@ -30,7 +30,7 @@ EOF
 
 umoci insert --image k8s_autoscale:final version.json /app/version.json
 
-APP_VERSION="$(cat /pyproject.toml | sed -n 's/version = "\(.*\)"/\1/p')"
+APP_VERSION="$(sed -n 's/^version = "\(.*\)"/\1/p' < /pyproject.toml)"
 DOCKER_TAG="$(echo ${DOCKER_TAG} | cut -f3 -d/)"
 DOCKER_ARCHIVE_TAG="${DOCKER_TAG}-${APP_VERSION}-$(date +%Y%m%d%H%M%S)-${VCS_HEAD_REV}"
 
