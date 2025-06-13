@@ -1,5 +1,9 @@
+ARG UV_VERSION
 ARG PYTHON_VERSION
+FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 FROM python:$PYTHON_VERSION
+
+COPY --from=uv /uv /bin
 
 # Add worker user
 RUN mkdir /builds && \
@@ -7,8 +11,6 @@ RUN mkdir /builds && \
     useradd -d /builds/worker -s /bin/bash -m worker -g 1000 -o -u 1000 && \
     mkdir /builds/worker/artifacts && \
     chown worker:worker /builds/worker/artifacts
-
-RUN pip install tox
 
 # %include-run-task
 

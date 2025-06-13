@@ -1,6 +1,60 @@
+[project]
+name = "k8s_autoscale"
+version = "0.1.2"
+description = "Autoscale scriptworkers in Kubernetes"
+url = "https://github.com/mozilla-releng/k8s-autoscale"
+license = "MPL-2.0"
+readme = "README.rst"
+authors = [
+    { name = "Mozilla Release Engineering", email = "release+python@mozilla.com" }
+]
+requires-python = ">=3.11"
+keywords = ["k8s-autoscale"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Natural Language :: English",
+]
+dependencies = [
+    "click",
+    "dockerflow",
+    "jsonschema",
+    "kubernetes",
+    "pyyaml",
+    "redo",
+    "sentry-sdk",
+    "taskcluster",
+]
+
+[project.scripts]
+k8s_autoscale = "k8s_autoscale.cli:main"
+k8s_autoscale-verify = "k8s_autoscale.cli:verify"
+
+[dependency-groups]
+dev = [
+    "black",
+    "isort",
+    "pytest",
+    "pytest-cov",
+    "tox",
+    "tox-uv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["src/**/*"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/" = ""
+
 [tool.black]
 line-length = 100
-target-version = ["py39", "py38"]
+target-version = ["py311"]
 include = '\.(wsgi|pyi?)$'
 exclude = '''
 /(

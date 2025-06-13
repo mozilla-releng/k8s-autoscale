@@ -5,10 +5,10 @@ import time
 
 import kubernetes
 from redo import retriable
-from taskcluster import Queue
 from taskcluster.exceptions import TaskclusterRestFailure
 
 from k8s_autoscale.slo import get_new_worker_count
+from taskcluster import Queue
 
 logger = logging.getLogger(__name__)
 

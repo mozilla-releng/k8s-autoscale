@@ -13,6 +13,8 @@ tasks:
         k8s_autoscale: {}
       cwd: '{checkout}'
       command:
+        - uv
+        - run
         - tox
         - -e
         - py311
