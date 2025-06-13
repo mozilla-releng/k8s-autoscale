@@ -13,4 +13,4 @@ Deployment
 
 Push to `dev` to deploy to dev, and `production` to deploy to production.
 
-Pushes to `master` will build and push images to Dockerhub, but will not perform any deployments. This is useful for ensuring image building/pushing works before attempting a deployment.
+Pushes to `main` will build and push images to Dockerhub, but will not perform any deployments. This is useful for ensuring image building/pushing works before attempting a deployment.
