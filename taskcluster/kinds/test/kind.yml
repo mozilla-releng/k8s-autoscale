@@ -13,6 +13,25 @@ tasks:
         k8s_autoscale: {}
       cwd: '{checkout}'
       command:
+        - uv
+        - run
         - tox
         - -e
         - py311
+  lint:
+    description: lint k8s-autoscale
+    worker-type: test
+    worker:
+      docker-image: {"in-tree": "test"}
+      max-run-time: 1800
+    run:
+      using: run-task
+      checkout:
+        k8s_autoscale: {}
+      cwd: '{checkout}'
+      command:
+        - uv
+        - run
+        - tox
+        - -e
+        - check

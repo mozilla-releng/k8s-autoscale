@@ -2,4 +2,4 @@
 set -e
 test $CONFIG
 
-exec /app/bin/k8s_autoscale --config /app/configs/$CONFIG
+exec /app/.venv/bin/k8s_autoscale --config /app/configs/$CONFIG

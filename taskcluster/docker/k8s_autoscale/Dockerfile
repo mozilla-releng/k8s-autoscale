@@ -1,44 +1,35 @@
+ARG UV_VERSION
 ARG PYTHON_VERSION
-FROM python:$PYTHON_VERSION
+FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
+FROM python:$PYTHON_VERSION AS builder
 
-RUN groupadd --gid 10001 app && \
-    useradd -g app --uid 10001 --shell /usr/sbin/nologin --create-home --home-dir /app app
-
+COPY --from=uv /uv /bin
 COPY . /app
 
 WORKDIR /app
-
-# %include version.txt
-COPY topsrcdir/version.txt /app/version.txt
 
 # %include docker.d
 COPY topsrcdir/docker.d/healthcheck /bin/healthcheck
 COPY topsrcdir/docker.d/init.sh /app/bin/init.sh
 
 # %include configs
-# %include requirements
-# %include MANIFEST.in
 # %include README.rst
 # %include pyproject.toml
-# %include setup.py
 # %include src
 COPY topsrcdir/configs/ /app/configs/
-COPY topsrcdir/requirements/ /app/requirements/
-COPY topsrcdir/MANIFEST.in /app/
 COPY topsrcdir/README.rst /app/
 COPY topsrcdir/pyproject.toml /app/
-COPY topsrcdir/setup.py /app/
 COPY topsrcdir/src/ /app/src/
-RUN python -m venv /app
-RUN ./bin/pip install -r /app/requirements/base.txt
-RUN ./bin/pip install -e .
+RUN uv venv
+RUN uv pip install .
 
-RUN chown -R app:app /app
+FROM python:$PYTHON_VERSION
 
-# %include-run-task
+WORKDIR /app
+RUN groupadd --gid 10001 app && \
+    useradd -g app --uid 10001 --shell /usr/sbin/nologin --create-home --home-dir /app app
 
-VOLUME /builds/worker/checkouts
-VOLUME /builds/worker/.cache
+COPY --from=builder --chown=app:app /app /app
 
 USER app
 CMD ["/app/bin/init.sh"]

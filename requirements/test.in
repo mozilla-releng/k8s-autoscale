@@ -1,9 +1,0 @@
--r base.in
-
-black
-check-manifest
-flake8
-isort
-pip-compile-multi
-pytest
-pytest-coverage
