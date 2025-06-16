@@ -19,6 +19,10 @@ echo "=== Inserting version.json into image ==="
 # Create an OCI copy of image in order umoci can patch it
 skopeo copy docker-archive:image.tar oci:k8s_autoscale:final
 
+APP_VERSION="$(sed -n 's/^version = "\(.*\)"/\1/p' < /pyproject.toml)"
+DOCKER_TAG="$(echo ${DOCKER_TAG} | cut -f3 -d/)"
+DOCKER_ARCHIVE_TAG="${DOCKER_TAG}-${APP_VERSION}-$(date +%Y%m%d%H%M%S)-${VCS_HEAD_REV}"
+
 cat > version.json <<EOF
 {
     "commit": "${VCS_HEAD_REV}",
@@ -29,10 +33,6 @@ cat > version.json <<EOF
 EOF
 
 umoci insert --image k8s_autoscale:final version.json /app/version.json
-
-APP_VERSION="$(sed -n 's/^version = "\(.*\)"/\1/p' < /pyproject.toml)"
-DOCKER_TAG="$(echo ${DOCKER_TAG} | cut -f3 -d/)"
-DOCKER_ARCHIVE_TAG="${DOCKER_TAG}-${APP_VERSION}-$(date +%Y%m%d%H%M%S)-${VCS_HEAD_REV}"
 
 if [ $DRYRUN = 1 ];
 then
