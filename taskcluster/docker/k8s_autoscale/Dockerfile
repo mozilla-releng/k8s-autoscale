@@ -8,10 +8,6 @@ COPY . /app
 
 WORKDIR /app
 
-# %include docker.d
-COPY topsrcdir/docker.d/healthcheck /bin/healthcheck
-COPY topsrcdir/docker.d/init.sh /app/bin/init.sh
-
 # %include configs
 # %include README.rst
 # %include pyproject.toml
@@ -24,6 +20,10 @@ RUN uv venv
 RUN uv pip install .
 
 FROM python:$PYTHON_VERSION
+
+# %include docker.d
+COPY topsrcdir/docker.d/healthcheck /bin/healthcheck
+COPY topsrcdir/docker.d/init.sh /app/bin/init.sh
 
 WORKDIR /app
 RUN groupadd --gid 10001 app && \
