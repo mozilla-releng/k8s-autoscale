@@ -41,12 +41,11 @@ tasks:
         run:
             using: run-task
             checkout: false
-            cache-dotcache: false
             command:
                 - /usr/local/bin/push_image.sh
 
         dependencies:
-            image: build-docker-image-k8s_autoscale
+            image: docker-image-k8s_autoscale
 
         fetches:
             image:
