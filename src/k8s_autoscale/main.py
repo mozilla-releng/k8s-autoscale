@@ -64,9 +64,9 @@ def adjust_scale(api, target_replicas, deployment_namespace, deployment_name):
 
 
 @retriable(sleeptime=3, max_sleeptime=10, retry_exceptions=(TaskclusterRestFailure,))
-def get_pending(queue, provisioner, worker_type):
+def get_counts(queue, provisioner, worker_type):
     taskQueueId = provisioner + "/" + worker_type
-    return queue.pendingTasks(taskQueueId)["pendingTasks"]
+    return queue.taskQueueCounts(taskQueueId)
 
 
 def handle_worker_type(cfg):
@@ -90,12 +90,13 @@ def handle_worker_type(cfg):
     capacity = cfg["autoscale"]["args"]["max_replicas"] - running
     log_env["capacity"] = capacity
 
-    logger.info("Checking pending", extra=log_env)
+    logger.info("Checking pending/claimed", extra=log_env)
     queue = Queue({"rootUrl": cfg["root_url"]})
-    pending = get_pending(queue, cfg["provisioner"], cfg["worker_type"])
-    log_env["pending"] = pending
+    counts = get_counts(queue, cfg["provisioner"], cfg["worker_type"])
+    log_env["pending"] = counts["pendingTasks"]
+    log_env["claimed"] = counts["claimedTasks"]
     logger.info("Calculated desired replica count", extra=log_env)
-    desired = get_new_worker_count(pending, running, cfg["autoscale"]["args"])
+    desired = get_new_worker_count(counts, running, cfg["autoscale"]["args"])
     log_env["desired"] = desired
     if desired == 0:
         logger.info("Zero replicas needed", extra=log_env)
