@@ -1,13 +1,16 @@
 import math
 
 
-def get_new_worker_count(pending, running, args):
+def get_new_worker_count(counts, running, args):
     # TODO: verify all the args
     assert args["slo_seconds"] > args["avg_task_duration"]
+    pending = counts["pendingTasks"]
+    claimed = counts["claimedTasks"]
+    tasks = pending + claimed
     # In case we don't want to cover all the pending tasks
     pending = int(math.ceil(pending * args["capacity_ratio"]))
-    # Scale down only when we have no pending tasks
-    if pending == 0:
+    # Scale down when we have no more pending or claimed tasks
+    if tasks == 0:
         return -running
     # How many tasks a replica can process within our tolerance period
     new_tasks_per_replica = math.floor(args["slo_seconds"] / args["avg_task_duration"])
