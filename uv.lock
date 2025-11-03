@@ -1078,15 +1078,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.42.1"
+version = "2.43.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/31/04/ec8c1dd9250847303d98516e917978cb1c7083024770d86d657d2ccb5a70/sentry_sdk-2.42.1.tar.gz", hash = "sha256:8598cc6edcfe74cb8074ba6a7c15338cdee93d63d3eb9b9943b4b568354ad5b6", size = 354839, upload-time = "2025-10-20T12:38:40.45Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/18/09875b4323b03ca9025bae7e6539797b27e4fc032998a466b4b9c3d24653/sentry_sdk-2.43.0.tar.gz", hash = "sha256:52ed6e251c5d2c084224d73efee56b007ef5c2d408a4a071270e82131d336e20", size = 368953, upload-time = "2025-10-29T11:26:08.156Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0f/cb/c21b96ff379923310b4fb2c06e8d560d801e24aeb300faa72a04776868fc/sentry_sdk-2.42.1-py2.py3-none-any.whl", hash = "sha256:f8716b50c927d3beb41bc88439dc6bcd872237b596df5b14613e2ade104aee02", size = 380952, upload-time = "2025-10-20T12:38:38.88Z" },
+    { url = "https://files.pythonhosted.org/packages/69/31/8228fa962f7fd8814d634e4ebece8780e2cdcfbdf0cd2e14d4a6861a7cd5/sentry_sdk-2.43.0-py2.py3-none-any.whl", hash = "sha256:4aacafcf1756ef066d359ae35030881917160ba7f6fc3ae11e0e58b09edc2d5d", size = 400997, upload-time = "2025-10-29T11:26:05.77Z" },
 ]
 
 [[package]]
@@ -1109,7 +1109,7 @@ wheels = [
 
 [[package]]
 name = "taskcluster"
-version = "91.0.1"
+version = "91.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -1120,9 +1120,9 @@ dependencies = [
     { name = "slugid" },
     { name = "taskcluster-urls" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f9/5c/60c7b146b2b5979c29caaa8edb945eda40451aaec4d780720f8deb351b36/taskcluster-91.0.1.tar.gz", hash = "sha256:212b3e1492620a0d81aa11696d1033f36c713e45cba3603a0244a2a2f983f654", size = 129258, upload-time = "2025-10-16T13:47:34.491Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/df/dc/dd750c279a9a1fe8637da98c4474e5c389ac9d0673a2e55668ce05f66e75/taskcluster-91.1.2.tar.gz", hash = "sha256:ac9cb0c6b63367601a896d2724a9f62e15cf455191e5c0b533a2d8149340bf39", size = 252539, upload-time = "2025-10-30T16:03:55.827Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/90/d4/75f26d72b46e63c7408096b3ea5735f5d09db6a21c03b1c85d001aa0e158/taskcluster-91.0.1-py3-none-any.whl", hash = "sha256:5c374e03e3c4e80e45dec2583b51f08834c31fceba4c888b4d3f93d8a1988c60", size = 147342, upload-time = "2025-10-16T13:47:32.838Z" },
+    { url = "https://files.pythonhosted.org/packages/a2/20/4de71e67cf7f9821cf85ad654dba4a2192272ee64c0449c08e9666a55bd4/taskcluster-91.1.2-py3-none-any.whl", hash = "sha256:fc588922305a0ba586d8eac8b8cb3a8479324d49ee37a176d34a3bf9a152963d", size = 147172, upload-time = "2025-10-30T16:03:53.933Z" },
 ]
 
 [[package]]
@@ -1175,7 +1175,7 @@ wheels = [
 
 [[package]]
 name = "tox"
-version = "4.31.0"
+version = "4.32.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -1188,9 +1188,9 @@ dependencies = [
     { name = "pyproject-api" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/be/b9/1750ebb6e8e2d198a17822b7b851dea33e61dcc9c25f55a3e3636f67389a/tox-4.31.0.tar.gz", hash = "sha256:266381ffef35615ec0d40ae4969a9e43b506017597c0413d6545a603cc8c7561", size = 203294, upload-time = "2025-10-09T18:53:53.619Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/59/bf/0e4dbd42724cbae25959f0e34c95d0c730df03ab03f54d52accd9abfc614/tox-4.32.0.tar.gz", hash = "sha256:1ad476b5f4d3679455b89a992849ffc3367560bbc7e9495ee8a3963542e7c8ff", size = 203330, upload-time = "2025-10-24T18:03:38.132Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3e/84/1691aae773dccff72c866ad19af7adb12d4fb8b439c8bfb36ffc429c8c27/tox-4.31.0-py3-none-any.whl", hash = "sha256:328f392e6567e46cb0f9b625679456744dde940287dd1b39117627dc4b21d5da", size = 175917, upload-time = "2025-10-09T18:53:51.494Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/cc/e09c0d663a004945f82beecd4f147053567910479314e8d01ba71e5d5dea/tox-4.32.0-py3-none-any.whl", hash = "sha256:451e81dc02ba8d1ed20efd52ee409641ae4b5d5830e008af10fe8823ef1bd551", size = 175905, upload-time = "2025-10-24T18:03:36.337Z" },
 ]
 
 [[package]]
