@@ -938,6 +938,34 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
+  - worker_type: enterprise-3-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-enterprise-3-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 20
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
+  - worker_type: enterprise-t-signing
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: prod-signing
+    deployment_name: signing-prod-relengworker-firefoxci-enterprise-t-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 10
+        avg_task_duration: 60
+        slo_seconds: 120
+        capacity_ratio: 1.0
+        min_replicas: 0
+
   - worker_type: mobile-3-signing
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
