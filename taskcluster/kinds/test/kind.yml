@@ -17,7 +17,7 @@ tasks:
         - run
         - tox
         - -e
-        - py311
+        - py314
   lint:
     description: lint k8s-autoscale
     worker-type: test

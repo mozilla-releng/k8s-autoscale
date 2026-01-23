@@ -8,10 +8,10 @@ readme = "README.rst"
 authors = [
     { name = "Mozilla Release Engineering", email = "release+python@mozilla.com" }
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 keywords = ["k8s-autoscale"]
 classifiers = [
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3",
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
@@ -54,7 +54,7 @@ include = ["src/**/*"]
 
 [tool.black]
 line-length = 100
-target-version = ["py311"]
+target-version = ["py314"]
 include = '\.(wsgi|pyi?)$'
 exclude = '''
 /(
