@@ -12,7 +12,6 @@ policy:
 tasks:
     - $let:
           trustDomain: "releng"
-          level: "3"
           ownerEmail:
               $switch:
                   'tasks_for == "github-push"': '${event.pusher.email}'
