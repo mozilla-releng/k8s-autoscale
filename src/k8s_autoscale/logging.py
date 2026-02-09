@@ -7,15 +7,14 @@ import logging
 import sys
 
 import sentry_sdk
-from dockerflow.logging import JsonLogFormatter
+from dockerflow.logging import MozlogHandler
 from sentry_sdk.integrations.logging import LoggingIntegration
 
 logger = logging.getLogger(__name__)
 
 
 def configure_logging(level):
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(JsonLogFormatter())
+    handler = MozlogHandler(sys.stdout)
     logging.root.addHandler(handler)
     logging.root.setLevel(level)
 
