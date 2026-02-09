@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Console script for kubernetes_autoscaler_for_taskcluster_scriptworkers."""
+
 import logging
 import os
 import sys
