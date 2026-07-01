@@ -451,6 +451,24 @@ worker_types:
         capacity_ratio: 1.0
         min_replicas: 0
 
+  - worker_type: comm-1-lando-dev
+    provisioner: scriptworker-k8s
+    root_url: "https://firefox-ci-tc.services.mozilla.com"
+    deployment_namespace: dev-lando
+    deployment_name: lando-dev-relengworker-firefoxci-comm-1-1
+    autoscale:
+      algorithm: slo
+      args:
+        max_replicas: 10
+        # these seem like weird values, and they are, but they effectively mean
+        # "always spin up a new replica for each task"
+        # a better solution would be a new algorithm that means exactly that,
+        # but this is good enough for now
+        avg_task_duration: 1999
+        slo_seconds: 2000
+        capacity_ratio: 1.0
+        min_replicas: 0
+
   - worker_type: xpi-1-lando-dev
     provisioner: scriptworker-k8s
     root_url: "https://firefox-ci-tc.services.mozilla.com"
